@@ -129,7 +129,7 @@ service named restart
 
 echo "Cofiger resolv.conf"
 cat << EOF > /etc/resolv.conf
-search $$ZHENGXIANG
+search $ZHENGXIANG
 nameserver $FANXIANG
 EOF
 
