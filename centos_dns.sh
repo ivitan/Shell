@@ -39,13 +39,13 @@ echo -ne "\033[m"
 
 function line()
 {
-        echo -e "$color5--------------------------------------------------------"
+        echo -e "$color5----------------------------------------------------------------------"
 }
 
 logo
 line
 
-if [ `yum list installed | grep bind` -ne 0 ];then
+if [ `rpm -qa | grep bind` -ne 0 ];then
 yum remove bind bind-chroot || rm -rf /var/named
 yum -y install bind bind-utils bind-chroot &> /dev/null
 echo "Bind is installed"
