@@ -12,18 +12,6 @@ function line()
     echo -e "$color1------------------------------------------------------------------------------------"
 }
 
-if [ $UID -ne 0 ];then
-    echo "Must to be use root for exec shell."
-    echo "Please change root user"
-    exit
-else
-    if [ `rpm -qa | grep rpcbind | wc -l` -ne 0 ];then
-        yum install rpcbind nfs-utils -y && service rpcbind start && service nfs start
-    else
-        yum install rpcbind nfs-utils -y && service rpcbind start && service nfs start
-        echo "rpcbind & utils oredly installed"
-    fi
-fi
 
 line
 
@@ -118,10 +106,6 @@ if [ $DIR ];then
     power
     POWERFUL=$(cat pow.txt)
     exports
-    service iptables stop
-    service rpcbind restart
-    service nfs restart
-    rm pow.txt
 fi
 
 line
