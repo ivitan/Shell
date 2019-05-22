@@ -1,6 +1,9 @@
 #! /bin/bash
 # CentOs local source
 
+mkdir /nfs
+mount /dev/cdrom /nfs
+
 PATH="etc/yum.repos.d/nfs.repo"
 
 cat << EOF > $PATH
