@@ -1,34 +1,4 @@
-#! /bin/bash
-# Centos NFS  
-color1="\e[0;31;40m"
-color2="\e[0;32;40m"
-color3="\e[0;33;40m"
-color4="\e[0;34;40m"
-color5="\e[0;35;40m"
-color6="\e[0;37;40m"
-
-function line()
-{
-    echo -e "$color1------------------------------------------------------------------------------------"
-}
-
-if [ $UID -ne 0 ];then
-    echo "Must to be use root for exec shell."
-    echo "Please change root user"
-    exit
-else
-    x=`rpm -qa | grep rpcbind` i
-    if [ `rpm -qa | grep $i |wc -l` -ne 0 ];then
-        yum install rpcbind nfs-utils -y && service rpcbind start && service nfs start
-    else
-        echo "rpcbind & utils oredly installed"
-    fi
-fi
-
-line
-
-function power()
-{
+#!/bin/bash
 cmd=(dialog --separate-output --checklist "Select options:" 22 76 16)
 options=(
          1 "rw: read-write可读写权限" on   # any option can be set to default to "on"
@@ -93,36 +63,5 @@ do
    echo -n "$i," >> pow.txt
 done
 
-line
-
-echo "请输入分享目录(/home/share)"
-read DIR
-echo "请输入 NFS 服务端IP"
-read CLIENT_IP
-
-if [ ! -d $DIR ];then
-    mkdir -p $DIR
-    echo "$DIR Create Successfully!"
-    line
-    echo "请选择权限"
-    POWER=$(cat pow.txt)
-else
-    line
-    echo "请选择权限"
-    POWER=$(cat pow.txt)
-fi
-
-line
-
-cat << EOF > /etc/exports
-# 分享目录       分享给主机(参数)	
-# /home/guests 192.168.22.100/24(rw,sync)
-$DIR    $CLIENT_IP/24($POWER)
-EOF
-
-line
-service iptables stop
-service rpcbind reatart
-service nfs reatart
-rm pow.txt
-echo "Finsh"
+POWER=$(cat pow.txt)
+echo $POWER
