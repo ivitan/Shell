@@ -1,5 +1,5 @@
 #! /bin/bash
-# Centos NFS  
+# Centos NFS  Server config
 color1="\e[0;31;40m"
 color2="\e[0;32;40m"
 color3="\e[0;33;40m"
@@ -13,15 +13,15 @@ function line()
 }
 
 if [ $UID -ne 0 ];then
-    echo "Must to be use root for exec shell."
-    echo "Please change root user"
+    echo -e "$color5 Must to be use root for exec shell."
+    echo -e "$color5Please change root user"
     exit
 else
     if [ `rpm -qa | grep rpcbind | wc -l` -ne 0 ];then
-        yum install rpcbind nfs-utils -y && service rpcbind start && service nfs start
+        echo -e "$color6 rpcbind & utils oredly installed"
     else
         yum install rpcbind nfs-utils -y && service rpcbind start && service nfs start
-        echo "rpcbind & utils oredly installed"
+        echo -e "$color4 rpcbind & utils install Successfully!"
     fi
 fi
 
@@ -29,19 +29,22 @@ line
 
 function power()
 {
-cmd=(dialog --separate-output --checklist "Select options:" 22 76 16)
+cmd=(dialog --separate-output --checklist "请选择权限" 22 76 16)
 options=(
-         1 "rw: read-write可读写权限" on   # any option can be set to default to "on"
-         2 "ro：read-only，唯读权限" off
-         3 "sync：资料同步运存与硬盘当中" off
-         4 "async：资料会先暂存于运存，而非直接写入硬盘" off
-         5 "no_root_squash：用者如果是root，对于分享的目录具有root权限极不安全，不建议使用" off
-         6 "root_squash：使用者如果是root，权限将被压缩成匿名使用者，通常他的UID 与GID 都会变成nobody(nfsnobody)那个系统帐号的身份；" off
-         7 "all_squash：不论登入NFS 的使用者身份为何，都会被压缩成为匿名使用者，通常是nobody(nfsnobody)" off
-         8 "anonuid：anon意指anonymous(匿名者)，自订匿名使用者的UID" off
-         9 "anongid：自订匿名使用者的是变成GID" off
-         10 "subtree_check:如果输出的目录是子目录，服务器将检查器父目录的权限" off
-         11 "no_subtree_check:如果输出的目录是子目录，服务器将不检查父目录的权限" off
+         1 "rw:可读写权限" on   # any option can be set to default to "on"
+         2 "ro:只是读权限" off
+         3 "sync:同步读写硬盘" on
+         4 "async:数据先暂存缓冲区，非直接写入硬盘" off
+         5 "no_root_squash:用者是root,分享的目录具有root权限极不安全，不建议使用" off
+         6 "root_squash:将root用户及所属用户组映射为匿名用户和用户组；" off
+         7 "all_squash:将所有用户及所属用户组映射为匿名用户和用户组" off
+         8 "anonuid:anon意指anonymous(匿名者)，自订匿名使用者的UID" off
+         9 "anongid:自订匿名使用者的是变成GID" off
+         10 "subtree_check:输出的目录是子目录，服务器将检查父目录的权限" off
+         11 "no_subtree_check:输出的目录是子目录，服务器将不检查父目录的权限" off
+         12 "secure:限制客户端从小于1024端口连接(默认)" off
+         13 "insecure:允许从大于1024端口连接" off
+         14 "no_wedlay:如有写操作,则立即执行" off
          )
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
@@ -83,10 +86,18 @@ do
         11)
             PROMISSION11="no_subtree_check"
             ;;
+        12)
+            PROMISSION12="secure"
+            ;;
+        13) PROMISSION13="insecure"
+            ;;
+        14)
+            PROMISSION14="no_wdelay"
+            ;;
     esac
 done
 
-VAR=("$PROMISSION1","$PROMISSION2","$PROMISSION3","$PROMISSION4","$PROMISSION5","$PROMISSION6","$PROMISSION7","$PROMISSION8","$PROMISSION9","$PROMISSION10","$PROMISSION11")
+VAR=("$PROMISSION1","$PROMISSION2","$PROMISSION3","$PROMISSION4","$PROMISSION5","$PROMISSION6","$PROMISSION7","$PROMISSION8","$PROMISSION9","$PROMISSION10","$PROMISSION11","$PROMISSION12","$PROMISSION13","$PROMISSION14")
 array=(${VAR//,/ }) 
 for i in ${array[@]}
 do 
@@ -96,9 +107,9 @@ done
 
 line
 
-echo "请输入分享目录(/home/share)"
+echo -e "$color3请输入分享目录(/home/share):"
 read DIR
-echo "请输入 NFS 服务端IP"
+echo -e "$color3请输入允许连接的IP:"
 read CLIENT_IP
 
 function exports ()
@@ -112,9 +123,8 @@ EOF
 
 if [ $DIR ];then
     mkdir -p $DIR
-    echo "$DIR Create Successfully!"
+    echo -e "$color54 $DIR Create Successfully!"
     line
-    echo "请选择权限"
     power
     POWERFUL=$(cat pow.txt)
     exports
@@ -126,4 +136,4 @@ fi
 
 line
 
-echo "Finsh"
+echo -e "$color4 Finsh"
