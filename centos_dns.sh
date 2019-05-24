@@ -45,15 +45,13 @@ function line()
 logo
 line
 
-if [ `rpm -qa | grep bind` -ne 0 ];then
-yum remove bind bind-chroot || rm -rf /var/named
-yum -y install bind bind-utils bind-chroot &> /dev/null
-echo "Bind is installed"
+if [ `rpm -qa | grep bind| wc -l` -ne 0 ];then
+        echo -e "$color3 Bind is installed"
 else
-yum -y install bind bind-utils bind-chroot &> /dev/null
-echo -e "$color2 Installed!!!"
-service named start
-echo -e "$color3 Install Success!!!"
+        yum -y install bind bind-utils bind-chroot &> /dev/null
+        echo -e "$color2 Installed!!!"
+        service named start
+        echo -e "$color3 Install Success!!!"
 fi
 
 line
@@ -188,6 +186,6 @@ nameserver $FANXIANG
 EOF
 
 line
-echo -e "$color3Finsh"
+echo -e "$color3 Finsh"
 
 line
