@@ -1,4 +1,4 @@
-## centos_dns Usage
+## centos6_dns Usage
 ### via curl
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ivitan/Shell/master/centos_dns.sh)"
