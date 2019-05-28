@@ -161,4 +161,4 @@ fi
 
 line
 
-echo -e "$color4 Finsh"
+echo -e "$color2 Finsh"
