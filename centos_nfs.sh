@@ -14,13 +14,14 @@ function line()
 
 if [ $UID -ne 0 ];then
     echo -e "$color5 Must to be use root for exec shell."
-    echo -e "$color5Please change root user"
+    echo -e "$color5 Please change root user"
     exit
 else
     if [ `rpm -qa | grep rpcbind | wc -l` -ne 0 ];then
+        yum install dialog -y
         echo -e "$color6 Rpcbind & nfs-utils oreadly installed"
     else
-        yum install rpcbind nfs-utils -y 
+        yum install rpcbind nfs-utils dialog -y 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
         [ $SYSTEM = "6" ];then
