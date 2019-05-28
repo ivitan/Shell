@@ -46,7 +46,7 @@ logo
 line
 
 if [ `rpm -qa | grep bind | wc -l` -ne 0 ];then
-        yum install bind-chroot -y &> /dec/null
+        yum install bind-chroot -y &> /dev/null
         echo -e "$color3 Bind is installed"
 else
         yum  install bind bind-utils bind-chroot -y &> /dev/null
@@ -54,10 +54,10 @@ else
 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
-        [ $SYSTEM = "6" ] ; then
+        [ $SYSTEM = "6" ];then
                 service named start
-                echo -e "$color3 Install Success!!!"
-        elif [ $SYSTEM = "7" ] ; then
+        echo -e "$color3 Install Success!!!"
+        elif [ $SYSTEM = "7" ];then
                 systemctl start named
                 echo -e "$color3 Install Success!!!"
         else
@@ -111,13 +111,13 @@ fi
 
 line
 
-echo -e "$color3请输入正向解析域配置文件名称(vitan.me)"
+echo -e "$color3 请输入正向解析域配置文件名称(vitan.me)"
 read ZHENGXIANG
 
 echo -e "$color3 请输入反向向解析域配置文件名称(149.28.197)"
 read FANXIANG
 
-echo -e "$color3请输入反向IP(197.28.149) \033[0m\n"
+echo -e "$color3 请输入反向IP(197.28.149) \033[0m\n"
 read FANIP
 
 if [ $ZHENGXIANG  ];then

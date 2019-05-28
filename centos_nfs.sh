@@ -23,10 +23,10 @@ else
         yum install rpcbind nfs-utils -y 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
-        [ $SYSTEM = "6" ] ; then
+        [ $SYSTEM = "6" ];then
                 service rpcbind start && service nfs start
                 echo -e "$color4 rpcbind & utils install Successfully!"
-        elif [ $SYSTEM = "7" ] ; then
+        elif [ $SYSTEM = "7" ];then
                 systemctl restart rpcbind && systemctl restart nfs
                 echo -e "$color4 rpcbind & utils install Successfully!"
         else
@@ -142,12 +142,12 @@ if [ $DIR ];then
 
     SYSTEM=`rpm -q centos-release|cut -d- -f3`
 
-    if [ $SYSTEM = "6" ] ; then
+    if [ $SYSTEM = "6" ];then
         service iptables stop
         service rpcbind restart
         service nfs restart
         rm pow.txt
-    else [ $SYSTEM = "7" ] ; then
+    else [ $SYSTEM = "7" ];then
         systemctl stop iptables 
         systemctl restart rpcbind 
         systemctl restart nfs 
