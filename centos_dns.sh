@@ -46,10 +46,10 @@ logo
 line
 
 if [ `rpm -qa | grep bind | wc -l` -ne 0 ];then
-        yum install bind-chroot &> /dec/null
+        yum install bind-chroot -y &> /dec/null
         echo -e "$color3 Bind is installed"
 else
-        yum -y install bind bind-utils bind-chroot &> /dev/null
+        yum  install bind bind-utils bind-chroot -y &> /dev/null
         echo -e "$color2 Installed!!!"
 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`

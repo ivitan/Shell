@@ -18,7 +18,7 @@ if [ $UID -ne 0 ];then
     exit
 else
     if [ `rpm -qa | grep rpcbind | wc -l` -ne 0 ];then
-        echo -e "$color6 rpcbind & utils oredly installed"
+        echo -e "$color6 Rpcbind & nfs-utils oreadly installed"
     else
         yum install rpcbind nfs-utils -y 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`
