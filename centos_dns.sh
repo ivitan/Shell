@@ -45,7 +45,8 @@ function line()
 logo
 line
 
-if [ `rpm -qa | grep bind| wc -l` -ne 0 ];then
+if [ `rpm -qa | grep bind | wc -l` -ne 0 ];then
+        yum install bind-chroot &> /dec/null
         echo -e "$color3 Bind is installed"
 else
         yum -y install bind bind-utils bind-chroot &> /dev/null
@@ -55,12 +56,13 @@ else
         if
         [ $SYSTEM = "6" ] ; then
                 service named start
+                echo -e "$color3 Install Success!!!"
         elif [ $SYSTEM = "7" ] ; then
                 systemctl start named
+                echo -e "$color3 Install Success!!!"
         else
                 exit
         fi
-        echo -e "$color3 Install Success!!!"
 fi
 
 line

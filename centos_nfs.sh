@@ -141,13 +141,12 @@ if [ $DIR ];then
     exports
 
     SYSTEM=`rpm -q centos-release|cut -d- -f3`
-    if
-    [ $SYSTEM = "6" ] ; then
+
+    if [ $SYSTEM = "6" ] ; then
         service iptables stop
         service rpcbind restart
         service nfs restart
         rm pow.txt
-
     else [ $SYSTEM = "7" ] ; then
         systemctl stop iptables 
         systemctl restart rpcbind 
