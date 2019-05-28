@@ -20,8 +20,18 @@ else
     if [ `rpm -qa | grep rpcbind | wc -l` -ne 0 ];then
         echo -e "$color6 rpcbind & utils oredly installed"
     else
-        yum install rpcbind nfs-utils -y && service rpcbind start && service nfs start
-        echo -e "$color4 rpcbind & utils install Successfully!"
+        yum install rpcbind nfs-utils -y 
+        SYSTEM=`rpm -q centos-release|cut -d- -f3`
+        if
+        [ $SYSTEM = "6" ] ; then
+                service rpcbind start && service nfs start
+                echo -e "$color4 rpcbind & utils install Successfully!"
+        elif [ $SYSTEM = "7" ] ; then
+                systemctl restart rpcbind && systemctl restart nfs
+                echo -e "$color4 rpcbind & utils install Successfully!"
+        else
+                exit
+        fi
     fi
 fi
 
@@ -46,6 +56,7 @@ options=(
          13 "insecure:允许从大于1024端口连接" off
          14 "no_wedlay:如有写操作,则立即执行" off
          )
+
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 for choice in $choices
@@ -128,10 +139,21 @@ if [ $DIR ];then
     power
     POWERFUL=$(cat pow.txt)
     exports
-    service iptables stop
-    service rpcbind restart
-    service nfs restart
-    rm pow.txt
+
+    SYSTEM=`rpm -q centos-release|cut -d- -f3`
+    if
+    [ $SYSTEM = "6" ] ; then
+        service iptables stop
+        service rpcbind restart
+        service nfs restart
+        rm pow.txt
+
+    else [ $SYSTEM = "7" ] ; then
+        systemctl stop iptables 
+        systemctl restart rpcbind 
+        systemctl restart nfs 
+        rm pow.txt
+    fi
 fi
 
 line

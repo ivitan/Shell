@@ -50,7 +50,16 @@ if [ `rpm -qa | grep bind| wc -l` -ne 0 ];then
 else
         yum -y install bind bind-utils bind-chroot &> /dev/null
         echo -e "$color2 Installed!!!"
-        service named start
+
+        SYSTEM=`rpm -q centos-release|cut -d- -f3`
+        if
+        [ $SYSTEM = "6" ] ; then
+                service named start
+        elif [ $SYSTEM = "7" ] ; then
+                systemctl start named
+        else
+                exit
+        fi
         echo -e "$color3 Install Success!!!"
 fi
 
@@ -177,8 +186,19 @@ fi
 line
 
 echo -e "$color3Restart named service"
-service named restart
+
+SYSTEM=`rpm -q centos-release|cut -d- -f3`
+        if
+        [ $SYSTEM = "6" ] ; then
+                service named restart
+        elif [ $SYSTEM = "7" ] ; then
+                systemctl restart named
+        else
+                exit
+        fi
+
 line
+
 echo -e "$color3Cofiger resolv.conf"
 cat << EOF > /etc/resolv.conf
 search $ZHENGXIANG
