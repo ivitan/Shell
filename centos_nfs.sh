@@ -147,11 +147,14 @@ if [ $DIR ];then
         service rpcbind restart
         service nfs restart
         rm pow.txt
-    else [ $SYSTEM = "7" ];then
+    elif [ $SYSTEM = "7" ];then
         systemctl stop iptables 
         systemctl restart rpcbind 
         systemctl restart nfs 
         rm pow.txt
+    else
+        echo -e "$color5 System not supported"
+        exit
     fi
 fi
 

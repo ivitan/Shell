@@ -13,6 +13,7 @@ function logo()
 {
 echo -ne "\033[0;33m"
 cat<<EOT
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                   _oo0oo_
                                  088888880
                                  88" . "88
@@ -61,13 +62,14 @@ else
                 systemctl start named
                 echo -e "$color3 Install Success!!!"
         else
+                echo -e "$color5 System not supported"
                 exit
         fi
 fi
 
 line
 
-echo -e "$color3请输入主配置文件的名字(named)"
+echo -e "$color3 请输入主配置文件的名字(named)"
 read NAMED
 if [ $NAMED ];then
 cat << EOF > /var/named/chroot/etc/named.conf
@@ -187,7 +189,7 @@ fi
 
 line
 
-echo -e "$color3Restart named service"
+echo -e "$color3 Restart named service"
 
 SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
@@ -196,6 +198,7 @@ SYSTEM=`rpm -q centos-release|cut -d- -f3`
         elif [ $SYSTEM = "7" ] ; then
                 systemctl restart named
         else
+                echo -e "$color5 System not supported"
                 exit
         fi
 
@@ -209,5 +212,3 @@ EOF
 
 line
 echo -e "$color3 Finsh"
-
-line
