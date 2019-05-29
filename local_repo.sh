@@ -6,7 +6,7 @@ color3="\e[0;33;40m"
 mkdir /local_repo
 mount /dev/cdrom /loca_repo
 
-PATH="etc/yum.repos.d/local_repo.repo"
+PATH="/etc/yum.repos.d/local_repo.repo"
 
 cat << EOF > $PATH
 [local_repo]
