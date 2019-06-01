@@ -236,7 +236,7 @@ function gdoc() {
 # TEST.
 function gtst() {
     gcap "✅ TEST: $@"
-}}
+}
 EOF
 
     cat << EOF >> $HOME/.gitconfig
