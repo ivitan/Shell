@@ -167,7 +167,7 @@ EOT
 
 }
 
-function menu {
+function menu() {
     echo
     echo "1.共享一个目录，任何人都可以访问"
     echo "2.共享一个目录，使用用户名和密码登录后才可以访问"
