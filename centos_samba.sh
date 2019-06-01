@@ -15,9 +15,6 @@ function line(){
     echo "------------------------------------------------------------------"
 }
 
-line
-logo
-
 function check_samba(){
 if [ $UID -ne 0 ];then
     echo "Must to be use root for exec shell."
