@@ -1,34 +1,34 @@
 #! /bin/bash
-function logo(){
-cat <<EOT
+blue="\033[36m"
+yellow="\033[33m"
 
+function logo(){
+echo -e "$yellow
    ______           __  ____  _____ _____    _____ ___    __  _______  ___ 
   / ____/__  ____  / /_/ __ \/ ___// ___/   / ___//   |  /  |/  / __ )/   |
  / /   / _ \/ __ \/ __/ / / /\__ \/ __ \    \__ \/ /| | / /|_/ / __  / /| |
 / /___/  __/ / / / /_/ /_/ /___/ / /_/ /   ___/ / ___ |/ /  / / /_/ / ___ |
 \____/\___/_/ /_/\__/\____//____/\____/   /____/_/  |_/_/  /_/_____/_/  |_|
-                                                                           
-EOT
+"
 }
 
 function line(){
-    echo "------------------------------------------------------------------"
+    echo -e "$blue ------------------------------------------------------------------"
 }
 
 function check_samba(){
 if [ $UID -ne 0 ];then
-    echo "Must to be use root for exec shell."
-    echo "Please change root user"
+    echo -e "$yellow Must to be use root for exec shell."
+    echo -e "$yellow Please change root user"
     exit
 else
     yum install samba samba-client -y &> /dev/null
-    echo "Samba installed successfully"
+    echo -e "$yellow Samba installed successfully"
 fi 
 }
 
 function anyone(){
-    echo "请输入要分享的目录名(/share)"
-    read DIR
+    read -p "请输入要分享的目录名(/share)" DIR
     mkdir $DIR
     chmod 777 $DIR
     mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
@@ -61,25 +61,20 @@ EOF
 }
 
 function adduser(){
-    echo "请输入组名"
-    echo
-    read GROUP
+    read -p "请输入组名" GROUP
     groupadd $GROUP
-    echo "请输入要创建的用户名"
-    echo
-    read NAME
+    read -p "请输入要创建的用户名" NAME
     useradd -g $GROUP $NAME
-    echo "设置密码"
+    echo -e "$blue 设置密码"
     echo
     passwd $NAME
     line
-    echo "设置samba账号密码"
+    echo -e "$blue 设置samba账号密码"
     smbpasswd -a $NAME
 }
 
 function mima(){
-    echo "请输入要分享的目录名(/share)"
-    read DIR
+    read -p "请输入要分享的目录名(/share)" DIR
     mkdir $DIR
     chmod 777 $DIR
     mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
@@ -113,16 +108,15 @@ function test(){
     function test_menu(){
         echo 
         echo "Select Item"
-        echo "1.测试smb.conf是否正确"
-        echo "2.重启 samba"
-        echo "3.关闭 iptables"
-        echo "4.将 SELinux 设成允许(Permissive)"
-        echo "5.返回主菜单"
-        echo "Enter your choice:" 
-        read -n 1 options
+        echo -e "$blue 1.测试smb.conf是否正确"
+        echo -e "$blue 2.重启 samba"
+        echo -e "$yellow3.关闭 iptables"
+        echo -e "$yellow4.将 SELinux 设成允许(Permissive)"
+        echo -e "$blue5.返回主菜单"
+        read -p "Enter your choice:" options
     }
 
-    while [ 1 ]
+    while [ true ]
     do
         test_menu
         case $options in
@@ -142,9 +136,7 @@ function test(){
             clear
             echo "Sorry wrong selection" ;;
         esac
-        echo "Hit any key to continue.CTRL D for exit"
-        echo
-        read -n 1 options 
+        read -p "Hit any key to continue. Or CTRL D for exit" options 
     done
 }
 
@@ -166,16 +158,15 @@ EOT
 
 function menu() {
     echo
-    echo "1.共享一个目录，任何人都可以访问"
-    echo "2.共享一个目录，使用用户名和密码登录后才可以访问"
-    echo "3.测试"
-    echo "4.帮助"
-    echo "5.添加用户组和用户并设置samba密码"
-    echo "Enter your choice:" 
-    read -n 1 option
+    echo -e "$yellow 1.共享一个目录，任何人都可以访问"
+    echo -e "$yellow 2.共享一个目录，使用用户名和密码登录后才可以访问"
+    echo -e "$blie 3.测试"
+    echo -e "$blue 4.帮助"
+    echo -e "$yellow 5.添加用户组和用户并设置samba密码"
+    read -p "Enter your choice:" option
 }
 
-while [ 1 ]
+while [ true ]
 do
     logo
     line
@@ -197,9 +188,8 @@ do
         adduser ;;
     *)
         clear
-        echo "Sorry wrong selection" ;;
+        echo -e "$blue Sorry wrong selection" ;;
     esac
-    echo "Hit any key to continue"
-    read -n 1 option 
+    read -p "Hit any key to continue" option 
 done
 clear

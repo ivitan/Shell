@@ -2,6 +2,9 @@
 # author Vitan
 # DNS Configer
 
+blue="\033[36m"
+yellow="\033[33m"
+
 color1="\e[0;31;40m"
 color2="\e[0;32;40m"
 color3="\e[0;33;40m"
@@ -11,8 +14,7 @@ color6="\e[0;37;40m"
 
 function logo()
 {
-echo -ne "\033[0;33m"
-cat<<EOT
+echo -e "$yellow
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                   _oo0oo_
                                  088888880
@@ -34,13 +36,12 @@ cat<<EOT
                                   '=---='
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         佛祖保佑    iii    永无 Bug
-EOT
-echo -ne "\033[m"
+"
 }
 
 function line()
 {
-        echo -e "$color5----------------------------------------------------------------------"
+        echo -e "$blue ----------------------------------------------------------------------"
 }
 
 logo
@@ -48,29 +49,28 @@ line
 
 if [ `rpm -qa | grep bind | wc -l` -ne 0 ];then
         yum install bind-chroot -y &> /dev/null
-        echo -e "$color3 Bind is installed"
+        echo -e "$blue Bind is installed"
 else
         yum  install bind bind-utils bind-chroot -y &> /dev/null
-        echo -e "$color2 Installed!!!"
+        echo -e "$yellow  Installed!!!"
 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
         [ $SYSTEM = "6" ];then
                 service named start
-        echo -e "$color3 Install Success!!!"
+        echo -e "$blue Install Success!!!"
         elif [ $SYSTEM = "7" ];then
                 systemctl start named
-                echo -e "$color3 Install Success!!!"
+                echo -e "$blue Install Success!!!"
         else
-                echo -e "$color5 System not supported"
+                echo -e "$yellow System not supported"
                 exit
         fi
 fi
 
 line
 
-echo -e "$color3 请输入主配置文件的名字(named)"
-read NAMED
+read -p "请输入主配置文件的名字(named)" NAMED
 if [ $NAMED ];then
 cat << EOF > /var/named/chroot/etc/named.conf
 options {
@@ -113,14 +113,9 @@ fi
 
 line
 
-echo -e "$color3 请输入正向解析域配置文件名称(vitan.me)"
-read ZHENGXIANG
-
-echo -e "$color3 请输入反向向解析域配置文件名称(149.28.197)"
-read FANXIANG
-
-echo -e "$color3 请输入反向IP(197.28.149) \033[0m\n"
-read FANIP
+read -p "请输入正向解析域配置文件名称(vitan.me)" ZHENGXIANG
+read -p "请输入反向向解析域配置文件名称(149.28.197)" FANXIANG
+read -p "请输入反向IP(197.28.149)" FANIP
 
 if [ $ZHENGXIANG  ];then
 cd /var/named/chroot/etc/
@@ -189,7 +184,7 @@ fi
 
 line
 
-echo -e "$color3 Restart named service"
+echo -e "$blue  Restart named service"
 
 SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
@@ -198,17 +193,17 @@ SYSTEM=`rpm -q centos-release|cut -d- -f3`
         elif [ $SYSTEM = "7" ] ; then
                 systemctl restart named
         else
-                echo -e "$color5 System not supported"
+                echo -e "$Blue  System not supported"
                 exit
         fi
 
 line
 
-echo -e "$color3Cofiger resolv.conf"
+echo -e "$yellow Cofiger resolv.conf"
 cat << EOF > /etc/resolv.conf
 search $ZHENGXIANG
 nameserver $FANXIANG
 EOF
 
 line
-echo -e "$color3 Finsh"
+echo -e "$blue Finsh"

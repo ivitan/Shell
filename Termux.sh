@@ -1,33 +1,33 @@
 #! /bin/bash
+blue="\033[36m"
+yellow="\033[33m"
+
 function logo(){
-cat <<EOT
+echo -e "$blue
  ______                       
 /_  __/__ ______ _  __ ____ __
  / / / -_) __/  ' \/ // /\ \ /
 /_/  \__/_/ /_/_/_/\_,_//_\_\ 
-                                                                           
-EOT
+"
 }
 
 function line(){
-    echo "-------------------------------"
+    echo -e "$blue -------------------------------------------"
 }
 
 function menu() {
-    echo
-    echo "1.启动空白问候语"
-    echo "2.恢复双层键盘"
-    echo "3.安装 SSH"
-    echo "4.Oh-My-ZSH"
-    echo "5.Hexo"
-    echo "6.Vim"
-    echo "7.Git & GitEmoji"
-    echo "Enter your choice:" 
-    echo
-    read -n 1 option
+	echo -e "$yellow 0.退出"
+    echo -e "$blue 1.启动空白问候语"
+    echo -e "$yellow 2.恢复双层键盘"
+    echo -e "$blue 3.安装 SSH"
+    echo -e "$yellow 4.Oh-My-ZSH"
+    echo -e "$blue 5.Hexo"
+    echo -e "$yellow 6.Vim"
+    echo -e "$blue 7.Git & GitEmoji"
+    read -p "Enter your choice:" option
 }
 
-while [ 1 ]
+while [ true ]
 do
     logo
     line
@@ -37,17 +37,21 @@ do
     0)
         break ;;
     1)
-        touch $HOME/.hushlogin ;;
+        touch $HOME/.hushlogin 
+		echo -e "$yellow Successful"
+		;;
     2)
         mkdir $HOME/.termux
         echo "extra-keys = [['ESC','/','-','HOME','UP','END','PGUP'],['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN']]" >> $HOME/.termux/termux.properties 
+		echo -e "$blue Successful"
         ;;
     3)
         apt install openssh -y
         git config --global user.name "Vitan"
         git config --global user.email "me@vitan.me"
         ssh-keygen -t rsa -C "me@vitan.me" 
-        ;;
+       echo -e "$yellow Successfuly"
+		;;
     4)
         apt install git zsh curl -y
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -57,7 +61,8 @@ do
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-        ;;
+        echo -e "$blue Successfuly"
+		;;
     5)
         pkg install nodejs -y
         git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/hexo
@@ -67,12 +72,13 @@ do
         npm i hexo-deployer-git --save
         npm un hexo-renderer-marked --save
         npm i hexo-renderer-markdown-it markdown-it-emoji markdown-it-mark markdown-it-deflist markdown-it-container --save
+		echo -e "$yellow Successfuly"
          ;;
     
     6)
         apt install vim -y
         curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        cat << EOF > ~/.vimrc
+    cat << EOF > ~/.vimrc
 " 一般设置
 set mouse=a              " 鼠标可用
 set relativenumber       " 将行号设置为相对行号
@@ -166,7 +172,7 @@ set ignorecase
 set hlsearch "搜索时高亮显示被找到的文本
 
 "airline settings
-let g:airline_theme = 'simple'
+let g:airline_theme = 'hybrid'
 let g:airline_powerline_fonts = 1
 
 if !exists('g:airline_symbols')
@@ -195,7 +201,7 @@ set foldlevel=99
 " Enable folding with the spacebar
 nnoremap <space> za
 EOF
-        ;;
+	echo -e "$blue Sucessfully";;
 
     7)
         apt install git -y
@@ -247,10 +253,10 @@ doc = "!f() { git cap \"📖 DOC: $@\"; }; f"
 # TEST.
 tst = "!f() { git cap \"✅ TEST: $@\"; }; f"
 EOF
+	echo -e "$yellow Successfully"
         ;;
     *)
         echo "Sorry wrong selection" ;;
     esac
-    echo "Hit any key to continue"
-    read -n 1 option 
+    read -p "Hit any key to continue" option 
 done

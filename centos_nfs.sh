@@ -1,35 +1,30 @@
 #! /bin/bash
 # Centos NFS  Server config
-color1="\e[0;31;40m"
-color2="\e[0;32;40m"
-color3="\e[0;33;40m"
-color4="\e[0;34;40m"
-color5="\e[0;35;40m"
-color6="\e[0;37;40m"
-
+blus="\033[36m"
+yellow="\033[33m"
 function line()
 {
-    echo -e "$color1------------------------------------------------------------------------------------"
+    echo -e "$yellow------------------------------------------------------------------------------------"
 }
 
 if [ $UID -ne 0 ];then
-    echo -e "$color5 Must to be use root for exec shell."
-    echo -e "$color5 Please change root user"
+    echo -e "$blue Must to be use root for exec shell."
+    echo -e "$yellow Please change root user"
     exit
 else
     if [ `rpm -qa | grep rpcbind | wc -l` -ne 0 ];then
         yum install dialog -y
-        echo -e "$color6 Rpcbind & nfs-utils oreadly installed"
+        echo -e "$blue Rpcbind & nfs-utils oreadly installed"
     else
         yum install rpcbind nfs-utils dialog -y 
         SYSTEM=`rpm -q centos-release|cut -d- -f3`
         if
         [ $SYSTEM = "6" ];then
                 service rpcbind start && service nfs start
-                echo -e "$color4 rpcbind & utils install Successfully!"
+                echo -e "$blue Rpcbind & utils install Successfully!"
         elif [ $SYSTEM = "7" ];then
                 systemctl restart rpcbind && systemctl restart nfs
-                echo -e "$color4 rpcbind & utils install Successfully!"
+                echo -e "$yellow rpcbind & utils install Successfully!"
         else
                 exit
         fi
@@ -119,10 +114,8 @@ done
 
 line
 
-echo -e "$color3请输入分享目录(/home/share):"
-read DIR
-echo -e "$color3请输入允许连接的IP:"
-read CLIENT_IP
+read -p "请输入分享目录(/home/share):" DIR
+read -p "请输入允许连接的IP:" CLIENT_IP
 
 function exports ()
 {
@@ -135,7 +128,7 @@ EOF
 
 if [ $DIR ];then
     mkdir -p $DIR
-    echo -e "$color54 $DIR Create Successfully!"
+    echo -e "$yellow $DIR Create Successfully!"
     line
     power
     POWERFUL=$(cat pow.txt)
@@ -154,11 +147,11 @@ if [ $DIR ];then
         systemctl restart nfs 
         rm pow.txt
     else
-        echo -e "$color5 System not supported"
+        echo -e "$blue System not supported"
         exit
     fi
 fi
 
 line
 
-echo -e "$color2 Finsh"
+echo -e "$yellow Finsh"
