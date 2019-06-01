@@ -206,7 +206,8 @@ EOF
     7)
         apt install git -y
         cat << EOF >> $HOME/.zshrc
-# Better Git Logs.
+
+#.# Better Git Logs.
 ### Using EMOJI-LOG (https://github.com/ahmadawais/Emoji-Log).
 # Git Commit, Add all and Push — in one step.
 function gcap() {
@@ -235,8 +236,9 @@ function gdoc() {
 # TEST.
 function gtst() {
     gcap "✅ TEST: $@"
-}
+}}
 EOF
+
     cat << EOF >> $HOME/.gitconfig
 # Git Commit, Add all and Push — in one step.
 cap = "!f() { git add .; git commit -m \"$@\"; git push; }; f"
