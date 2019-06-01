@@ -33,7 +33,7 @@ do
     0)
         break ;;
     1)
-       touch .hushlogin ;;
+        touch .hushlogin ;;
     2)
         mkdir $HOME/.termux
         echo "extra-keys = [['ESC','/','-','HOME','UP','END','PGUP'],['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN']]" >> $HOME/.termux/termux.properties 
@@ -48,8 +48,8 @@ do
         apt install git zsh curl -y
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
         chsh -s zsh 
-        git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/custom/themes/spaceship-prompt"
-        ln -s "$ZSH_CUSTOM/custum/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/custom/themes/spaceship.zsh-theme"
+        git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+        ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
         git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
         git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-completions
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -59,14 +59,10 @@ do
         git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/hexo
         git clone https://github.com/ivitan/hexo-theme-cutie.git $HOME/hexo/themes/cutie
         cd ~/hexo
-        npm install -g hexo-cli
-        npm install hexo-deployer-git
+        npm i -g hexo-cli 
+        npm i hexo-deployer-git --save
         npm un hexo-renderer-marked --save
-        npm i hexo-renderer-markdown-it --save
-        npm i markdown-it-emoji --save
-        npm i markdown-it-mark --save
-        npm i markdown-it-deflist --save
-        npm i markdown-it-container --save
+        npm i hexo-renderer-markdown-it markdown-it-emoji markdown-it-mark markdown-it-deflist markdown-it-container --save
          ;;
     
     6)
@@ -198,7 +194,6 @@ EOF
         ;;
 
     *)
-        clear
         echo "Sorry wrong selection" ;;
     esac
     echo "Hit any key to continue"
