@@ -180,6 +180,10 @@ function menu() {
 
 while [ 1 ]
 do
+    logo
+    line
+    check_samba
+    line
     menu
     case $option in
     0)
@@ -202,9 +206,3 @@ do
     read -n 1 option 
 done
 clear
-
-logo
-line
-check_samba
-line
-menu
