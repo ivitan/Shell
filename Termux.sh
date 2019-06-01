@@ -10,7 +10,7 @@ EOT
 }
 
 function line(){
-    echo "------------------------------------------------------------------"
+    echo "-------------------------------"
 }
 
 function menu() {
@@ -28,12 +28,15 @@ function menu() {
 
 while [ 1 ]
 do
+    logo
+    line
     menu
+    line
     case $option in
     0)
         break ;;
     1)
-        touch .hushlogin ;;
+        touch $HOME/.hushlogin ;;
     2)
         mkdir $HOME/.termux
         echo "extra-keys = [['ESC','/','-','HOME','UP','END','PGUP'],['TAB','CTRL','ALT','LEFT','DOWN','RIGHT','PGDN']]" >> $HOME/.termux/termux.properties 
@@ -199,7 +202,3 @@ EOF
     echo "Hit any key to continue"
     read -n 1 option 
 done
-
-logo
-line
-menu
