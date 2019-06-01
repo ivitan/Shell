@@ -21,6 +21,7 @@ function menu() {
     echo "4.Oh-My-ZSH"
     echo "5.Hexo"
     echo "6.Vim"
+    echo "7.Git & GitEmoji"
     echo "Enter your choice:" 
     echo
     read -n 1 option
@@ -58,7 +59,7 @@ do
         git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
         ;;
     5)
-        pkg install nodejs-lts -y
+        pkg install nodejs -y
         git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/hexo
         git clone https://github.com/ivitan/hexo-theme-cutie.git $HOME/hexo/themes/cutie
         cd ~/hexo
@@ -196,6 +197,57 @@ nnoremap <space> za
 EOF
         ;;
 
+    7)
+        apt install git -y
+        cat << EOF >> $HOME/.zshrc
+# Better Git Logs.
+### Using EMOJI-LOG (https://github.com/ahmadawais/Emoji-Log).
+# Git Commit, Add all and Push — in one step.
+function gcap() {
+    git add . && git commit -m "$*" && git push
+}
+# NEW.
+function gnew() {
+    gcap "📦 NEW: $@"
+}
+# IMPROVE.
+function gimp() {
+    gcap "👌 IMPROVE: $@"
+}
+# FIX.
+function gfix() {
+    gcap "🐛 FIX: $@"
+}
+# RELEASE.
+function grlz() {
+    gcap "🚀 RELEASE: $@"
+}
+# DOC.
+function gdoc() {
+    gcap "📖 DOC: $@"
+}
+# TEST.
+function gtst() {
+    gcap "✅ TEST: $@"
+}
+EOF
+    cat << EOF >> $HOME/.gitconfig
+# Git Commit, Add all and Push — in one step.
+cap = "!f() { git add .; git commit -m \"$@\"; git push; }; f"
+# NEW.
+new = "!f() { git cap \"📦 NEW: $@\"; }; f"
+# IMPROVE.
+imp = "!f() { git cap \"👌 IMPROVE: $@\"; }; f"
+# FIX.
+fix = "!f() { git cap \"🐛 FIX: $@\"; }; f"
+# RELEASE.
+rlz = "!f() { git cap \"🚀 RELEASE: $@\"; }; f"
+# DOC.
+doc = "!f() { git cap \"📖 DOC: $@\"; }; f"
+# TEST.
+tst = "!f() { git cap \"✅ TEST: $@\"; }; f"
+EOF
+        ;;
     *)
         echo "Sorry wrong selection" ;;
     esac
