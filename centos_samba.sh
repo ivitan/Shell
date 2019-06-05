@@ -110,9 +110,9 @@ function test(){
         echo "Select Item"
         echo -e "$blue 1.测试smb.conf是否正确"
         echo -e "$blue 2.重启 samba"
-        echo -e "$yellow3.关闭 iptables"
-        echo -e "$yellow4.将 SELinux 设成允许(Permissive)"
-        echo -e "$blue5.返回主菜单"
+        echo -e "$yellow 3.关闭 iptables"
+        echo -e "$yellow 4.将 SELinux 设成允许(Permissive)"
+        echo -e "$blue5 .返回主菜单"
         read -p "Enter your choice:" options
     }
 
