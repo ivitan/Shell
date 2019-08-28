@@ -48,8 +48,8 @@ do
     3)
         apt install openssh -y
         git config --global user.name "Vitan"
-        git config --global user.email "me@vitan.me"
-        ssh-keygen -t rsa -C "me@vitan.me" 
+        git config --global user.email "vitan.me@gmail.com"
+        ssh-keygen -t rsa -C "vitan.me@gmail.com" 
        echo -e "$yellow Successfuly"
 		;;
     4)
