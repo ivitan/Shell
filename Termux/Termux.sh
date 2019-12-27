@@ -287,6 +287,9 @@ rlz = "!f() { git cap \"🚀 RELEASE: $@\"; }; f"
 doc = "!f() { git cap \"📖 DOC: $@\"; }; f"
 # TEST.
 tst = "!f() { git cap \"✅ TEST: $@\"; }; f"
+
+# Diabale SPACESHIP_VI_MODE
+SPACESHIP_VI_MODE_INSERT=''.
 EOF
 	echo -e "$yellow Successfully"
         ;;
