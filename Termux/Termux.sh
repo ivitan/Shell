@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 blue="\033[36m"
 yellow="\033[33m"
 
