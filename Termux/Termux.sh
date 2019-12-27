@@ -16,7 +16,7 @@ function line(){
 }
 
 function menu() {
-	echo -e "$yellow 0.退出"
+    echo -e "$yellow 0.退出"
     echo -e "$blue 1.启动空白问候语"
     echo -e "$yellow 2.恢复双层键盘"
     echo -e "$blue 3.安装 SSH"
