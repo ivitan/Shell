@@ -43,8 +43,8 @@ case $items in
 
 2 ) 
     pkg in -y unzip wget
-    wget -O ~/adb.zip https://github.com/ivitan/Shell/releases/download/Adb/adb.zip
-    unzip ~/adb.zip
+    wget https://github.com/ivitan/Shell/releases/download/Adb/adb.zip -O ~/adb.zip
+    unzip ~/adb.zip -d ~/
     rm -rf ~/adb.zip
     mv -f ~/adb $PREFIX/bin/
     mv -f ~/fastboot $PREFIX/bin/
@@ -54,7 +54,7 @@ case $items in
 
 3 )
     pkg in -y wget
-    wget -O ~/Java.deb https://github.com/ivitan/Shell/releases/download/Java/java8.deb
+    wget https://github.com/ivitan/Shell/releases/download/Java/java8.deb -O ~/Java.deb
     dpkg -i ~/Java.deb
     rm -rf ~/Java.deb
     menu ; items ;;     
@@ -77,5 +77,5 @@ esac
 }
 
 logo
-menu;
+menu
 items
