@@ -1,4 +1,5 @@
 #! /bin/bash
+#Copyright by Vitan @ 2019
 blue="\033[36m"
 yellow="\033[33m"
 
@@ -7,7 +8,7 @@ echo -e "$blue
  ______                       
 /_  __/__ ______ _  __ ____ __
  / / / -_) __/  ' \/ // /\ \ /
-/_/  \__/_/ /_/_/_/\_,_//_\_\ 
+/_/  \__/_/ /_/_/_/\_,_//_\_\ Python
 "
 }
 
@@ -16,15 +17,15 @@ function line(){
 }
 
 function menu() {
-    echo -e "$yellow 1.Python3"
-    echo -e "$blue 2.Jupyter Notebook"
-    echo -e "$yellow 3.BeautifulSoup4 & requests"
-    echo -e "$blue 4.lxml"
-    echo -e "$yellow 5.scrapy"
-    echo -e "$blue 6.numpy"
-    echo -e "$yellow 7.matplotlib"
-    echo -e "$blue 8.pandas & scipy"
-    echo -e "$yellow 9.Sklearn"
+    echo -e "$yellow 1) Python3"
+    echo -e "$blue 2) Jupyter Notebook"
+    echo -e "$yellow 3) BeautifulSoup4 & requests"
+    echo -e "$blue 4) lxml"
+    echo -e "$yellow 5) scrapy"
+    echo -e "$blue 6) numpy"
+    echo -e "$yellow 7) matplotlib"
+    echo -e "$blue 8) pandas & scipy"
+    echo -e "$yellow 9) Sklearn"
     read -p "Enter your choice:" option
 }
 
