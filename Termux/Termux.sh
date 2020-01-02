@@ -106,7 +106,7 @@ do
         termux-setup-storage
         ;;
 
-    10）
+    10)
         PythonTools
         ;;
 
