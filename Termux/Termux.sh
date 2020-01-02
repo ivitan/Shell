@@ -29,6 +29,7 @@ function menu() {
     echo -e "$yellow 8) 更换清华源"
     echo -e "$blue 9) 获取储存权限"
     echo -e "$yellow 10) Python Tools"
+    echo -e "$yellow 11) 其他小工具"
     read -p "Enter your choice:" option
 }
 
@@ -104,7 +105,7 @@ function Termux(){
             menu
             Termux
         ;;
-        
+
         7)
             apt install git  wget -y
             wget -O ~/.zshrc https://github.com/ivitan/UnixConfig/releases/download/zshrc/zshrc
@@ -132,7 +133,13 @@ function Termux(){
         10)
             line
             PythonTools
+            PyItems
         ;;
+
+        11)
+            line
+            Tools
+            items
         
         *)
         echo -e "\033[31m Sorry wrong selection  \033[0m" ;;
@@ -142,7 +149,7 @@ function Termux(){
 }
 
 function PythonTools(){
-    echo -e "0）Exit"
+    echo -e "$blue 0)Exit"
     echo -e "$yellow 1) Python3"
     echo -e "$blue 2) Jupyter Notebook"
     echo -e "$yellow 3) BeautifulSoup4 & requests"
@@ -153,7 +160,6 @@ function PythonTools(){
     echo -e "$blue 8) pandas & scipy"
     echo -e "$yellow 9) Sklearn"
     echo -e "$blue 10) Go back"
-    echo -e "$yellow 11) 其他小工具"
     read -p "Hit your choice # " PyItems
 }
 
@@ -282,7 +288,7 @@ function PyItems() {
 }
 
 function Tools(){
-    echo -e "$yellow 0 ) 退出"
+    echo -e "$yellow 0) 退出"
     echo -e "$yellow 1) BaiduPCS-Go"
     echo -e "$blue 2) Adb&Fastboot"
     echo -e "$yellow 3) Java"
