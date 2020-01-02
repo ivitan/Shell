@@ -142,6 +142,7 @@ function Termux(){
 
 
 function PythonTools(){
+    echo -e "0）Exit"
     echo -e "$yellow 1) Python3"
     echo -e "$blue 2) Jupyter Notebook"
     echo -e "$yellow 3) BeautifulSoup4 & requests"
@@ -260,7 +261,7 @@ function PyItems() {
         *)
         echo "Sorry wrong selection" ;;
     esac
-    read -p "Hit any key go back" option
+    read -p "Hit any key go back" PyItems
     PyItems
 }
 line
