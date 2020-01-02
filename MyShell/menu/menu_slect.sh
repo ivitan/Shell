@@ -12,7 +12,7 @@ function whoseon {
 }
 
 function memusage {
-    clear 
+    clear
     free -m
 }
 
@@ -20,16 +20,16 @@ PS3="Enter your OPtion:"
 select option in "disk" "who" "memory" "exit"
 do
     case $option in
-    "disk")
+        "disk")
         diskspace ;;
-    "who")
+        "who")
         whoseon ;;
-    "memory")
+        "memory")
         memusage ;;
-    "exit")
+        "exit")
         break ;;
-    *)
-        clear
+        *)
+            clear
         echo "Sorry wrong selection" ;;
     esac
 done

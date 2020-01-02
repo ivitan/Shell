@@ -22,24 +22,24 @@ function memusage {
 
 while [ 1 ]
 do
-    dialog --menu "Sys Menu" 20 30 10 1 "disk" 2 "users" 3 "memory" 0 "exit" 2> $temp2 
+    dialog --menu "Sys Menu" 20 30 10 1 "disk" 2 "users" 3 "memory" 0 "exit" 2> $temp2
     if [ $? -eq 1 ]
     then
         break
     fi
-
+    
     selection=`cat $temp2`
     case $selection in
-    1)
+        1)
         diskspace ;;
-    2)
+        2)
         whoseon ;;
-    3)
+        3)
         memusage ;;
-    0)
+        0)
         break ;;
-    *)
-        dialog --msgbox "Sorry invalid selection" 10 30 
+        *)
+            dialog --msgbox "Sorry invalid selection" 10 30
     esac
 done
 rm -f $temp 2> /dev/null

@@ -12,7 +12,7 @@ function whoseon {
 }
 
 function memusage {
-    clear 
+    clear
     free -m
 }
 
@@ -23,7 +23,7 @@ function menu {
     echo "1.Dispaly Disk usage"
     echo "2.Dispaly who are on"
     echo "3.Display memuage "
-    echo "Enter your choice:" 
+    echo "Enter your choice:"
     read -n 1 option
 }
 
@@ -31,18 +31,18 @@ while [ 1 ]
 do
     menu
     case $option in
-    0)
+        0)
         break ;;
-    1)
+        1)
         diskspace ;;
-    2)
+        2)
         whoseon ;;
-    *)
-        clear
+        *)
+            clear
         echo "sorry wrong selection" ;;
     esac
     echo "Hit any key to continue"
-    read -n 1 option 
+    read -n 1 option
 done
 clear
 
