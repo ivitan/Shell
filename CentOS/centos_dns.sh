@@ -14,7 +14,7 @@ color6="\e[0;37;40m"
 
 function logo()
 {
-echo -e "$yellow
+    echo -e "$yellow
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                   _oo0oo_
                                  088888880
@@ -36,36 +36,36 @@ echo -e "$yellow
                                   '=---='
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         佛祖保佑    iii    永无 Bug
-"
+    "
 }
 
 function line()
 {
-        echo -e "$blue ----------------------------------------------------------------------"
+    echo -e "$blue ----------------------------------------------------------------------"
 }
 
 logo
 line
 
 if [ `rpm -qa | grep bind | wc -l` -ne 0 ];then
-        yum install bind-chroot -y &> /dev/null
-        echo -e "$blue Bind is installed"
+    yum install bind-chroot -y &> /dev/null
+    echo -e "$blue Bind is installed"
 else
-        yum  install bind bind-utils bind-chroot -y &> /dev/null
-        echo -e "$yellow  Installed!!!"
-
-        SYSTEM=`rpm -q centos-release|cut -d- -f3`
-        if
-        [ $SYSTEM = "6" ];then
-                service named start
+    yum  install bind bind-utils bind-chroot -y &> /dev/null
+    echo -e "$yellow  Installed!!!"
+    
+    SYSTEM=`rpm -q centos-release|cut -d- -f3`
+    if
+    [ $SYSTEM = "6" ];then
+        service named start
         echo -e "$blue Install Success!!!"
         elif [ $SYSTEM = "7" ];then
-                systemctl start named
-                echo -e "$blue Install Success!!!"
-        else
-                echo -e "$yellow System not supported"
-                exit
-        fi
+        systemctl start named
+        echo -e "$blue Install Success!!!"
+    else
+        echo -e "$yellow System not supported"
+        exit
+    fi
 fi
 
 line
@@ -118,8 +118,8 @@ read -p "请输入反向向解析域配置文件名称(149.28.197)" FANXIANG
 read -p "请输入反向IP(197.28.149)" FANIP
 
 if [ $ZHENGXIANG  ];then
-cd /var/named/chroot/etc/
-cp -p named.rfc1912.zones $NAMED.zones
+    cd /var/named/chroot/etc/
+    cp -p named.rfc1912.zones $NAMED.zones
 cat << EOF > $NAMED.zones
 zone "$ZHENGXIANG" IN {
         type master;
@@ -187,15 +187,15 @@ line
 echo -e "$blue  Restart named service"
 
 SYSTEM=`rpm -q centos-release|cut -d- -f3`
-        if
-        [ $SYSTEM = "6" ] ; then
-                service named restart
-        elif [ $SYSTEM = "7" ] ; then
-                systemctl restart named
-        else
-                echo -e "$Blue  System not supported"
-                exit
-        fi
+if
+[ $SYSTEM = "6" ] ; then
+    service named restart
+    elif [ $SYSTEM = "7" ] ; then
+    systemctl restart named
+else
+    echo -e "$Blue  System not supported"
+    exit
+fi
 
 line
 

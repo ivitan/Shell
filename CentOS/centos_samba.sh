@@ -3,13 +3,13 @@ blue="\033[36m"
 yellow="\033[33m"
 
 function logo(){
-echo -e "$yellow
-   ______           __  ____  _____ _____    _____ ___    __  _______  ___ 
+    echo -e "$yellow
+   ______           __  ____  _____ _____    _____ ___    __  _______  ___
   / ____/__  ____  / /_/ __ \/ ___// ___/   / ___//   |  /  |/  / __ )/   |
  / /   / _ \/ __ \/ __/ / / /\__ \/ __ \    \__ \/ /| | / /|_/ / __  / /| |
 / /___/  __/ / / / /_/ /_/ /___/ / /_/ /   ___/ / ___ |/ /  / / /_/ / ___ |
 \____/\___/_/ /_/\__/\____//____/\____/   /____/_/  |_/_/  /_/_____/_/  |_|
-"
+    "
 }
 
 function line(){
@@ -17,14 +17,14 @@ function line(){
 }
 
 function check_samba(){
-if [ $UID -ne 0 ];then
-    echo -e "$yellow Must to be use root for exec shell."
-    echo -e "$yellow Please change root user"
-    exit
-else
-    yum install samba samba-client -y &> /dev/null
-    echo -e "$yellow Samba installed successfully"
-fi 
+    if [ $UID -ne 0 ];then
+        echo -e "$yellow Must to be use root for exec shell."
+        echo -e "$yellow Please change root user"
+        exit
+    else
+        yum install samba samba-client -y &> /dev/null
+        echo -e "$yellow Samba installed successfully"
+    fi
 }
 
 function anyone(){
@@ -32,7 +32,7 @@ function anyone(){
     mkdir $DIR
     chmod 777 $DIR
     mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
-
+    
     cat << EOF > /etc/samba/smb.conf
     [global]
             workgroup = WORKGROUP
@@ -41,7 +41,7 @@ function anyone(){
             passdb backend = tdbsam
             load printers = yes
             cups options = raw
-    
+
     [share]
         comment = share for users
         path = /$DIR
@@ -79,7 +79,7 @@ function mima(){
     chmod 777 $DIR
     mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
     adduser
-
+    
     cat << EOF > /etc/samba/smb.conf
     [global]
         workgroup = WORKGROUP
@@ -93,7 +93,7 @@ function mima(){
         smb passwd file = /etc/samba/smbpsaawd
         load printers = yes
         cups options = raw
-    
+
     [$GROUP]
         comment = share for users
         path = /$DIR
@@ -106,7 +106,7 @@ EOF
 
 function test(){
     function test_menu(){
-        echo 
+        echo
         echo "Select Item"
         echo -e "$blue 1.测试smb.conf是否正确"
         echo -e "$blue 2.重启 samba"
@@ -115,28 +115,28 @@ function test(){
         echo -e "$blue5 .返回主菜单"
         read -p "Enter your choice:" options
     }
-
+    
     while [ true ]
     do
         test_menu
         case $options in
-        0)
+            0)
             break ;;
-        1)
+            1)
             testparm ;;
-        2)
+            2)
             service smb reload && service smb restart ;;
-        3)
+            3)
             service iptables stop ;;
-        4)
+            4)
             setenforce 0 ;;
-        5)
+            5)
             menu ;;
-        *)
-            clear
+            *)
+                clear
             echo "Sorry wrong selection" ;;
         esac
-        read -p "Hit any key to continue. Or CTRL D for exit" options 
+        read -p "Hit any key to continue. Or CTRL D for exit" options
     done
 }
 
@@ -153,7 +153,7 @@ function helper(){
 EOT
     echo "samba 的找密码为 添加的用户明和设置的samba密码"
     echo "更多内容请自行GOOGLE"
-
+    
 }
 
 function menu() {
@@ -174,22 +174,22 @@ do
     line
     menu
     case $option in
-    0)
+        0)
         break ;;
-    1)
+        1)
         anyone ;;
-    2)
+        2)
         mima ;;
-    3)
+        3)
         test ;;
-    4)
+        4)
         helper ;;
-    5)
+        5)
         adduser ;;
-    *)
-        clear
+        *)
+            clear
         echo -e "$blue Sorry wrong selection" ;;
     esac
-    read -p "Hit any key to continue" option 
+    read -p "Hit any key to continue" option
 done
 clear

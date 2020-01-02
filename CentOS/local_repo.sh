@@ -12,7 +12,7 @@ cat << EOF > $PATH
 [local]
 name=local
 baseurl=file:///local
-gpgcheck=0 # 关闭 Key 检查 
+gpgcheck=0 # 关闭 Key 检查
 enabled=1 #开启本地源
 EOF
 
