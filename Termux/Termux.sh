@@ -4,6 +4,10 @@
 blue="\033[36m"
 yellow="\033[33m"
 
+function line(){
+    echo -e "$blue -------------------------------------------"
+}
+
 function logo(){
     echo -e "$blue
  ______
@@ -11,10 +15,6 @@ function logo(){
  / / / -_) __/  ' \/ // /\ \ /
 /_/  \__/_/ /_/_/_/\_,_//_\_\  Config
     "
-}
-
-function line(){
-    echo -e "$blue -------------------------------------------"
 }
 
 function menu() {
@@ -137,6 +137,7 @@ function Termux(){
         echo -e "\033[31m Sorry wrong selection  \033[0m" ;;
     esac
     read -p "Hit any key to continue" option
+    menu
 }
 
 
@@ -156,9 +157,6 @@ function PythonTools(){
 
 function PyItems() {
     case $PyItems in
-        0)
-        break ;;
-        
         1)
             pkg install python python-dev clang -y
             apt install libxml2 libxml2-dev libxslt libxslt-dev -y
@@ -260,8 +258,11 @@ function PyItems() {
         echo "Sorry wrong selection" ;;
     esac
     read -p "Hit any key go back" option
+    PyItems
 }
 
+line
 logo
+line
 menu
 Termux
