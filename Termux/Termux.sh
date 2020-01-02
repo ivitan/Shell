@@ -19,15 +19,16 @@ function line(){
 
 function menu() {
     echo -e "$yellow 0 ) 退出"
-    echo -e "$blue 1 ) 启动空白问候语"
-    echo -e "$yellow 2 ) 恢复双层键盘"
-    echo -e "$blue 3 ) 安装 SSH"
-    echo -e "$yellow 4 ) Oh-My-Zsh"
-    echo -e "$blue 5 ) Hexo"
-    echo -e "$yellow 6 ) Vim"
-    echo -e "$blue 7 ) Git & GitEmoji"
-    echo -e "$yellow 8 ) 更换清华源"
-    echo -e "$blue 9 ) 获取储存权限"
+    echo -e "$blue 1) 启动空白问候语"
+    echo -e "$yellow 2) 恢复双层键盘"
+    echo -e "$blue 3) 安装 SSH"
+    echo -e "$yellow 4) Oh-My-Zsh"
+    echo -e "$blue 5) Hexo"
+    echo -e "$yellow 6) Vim"
+    echo -e "$blue 7) Git & GitEmoji"
+    echo -e "$yellow 8) 更换清华源"
+    echo -e "$blue 9) 获取储存权限"
+    echo -e "$yellow 10) Python Tools"
     read -p "Enter your choice:" option
 }
 
@@ -105,8 +106,103 @@ do
         termux-setup-storage
         ;;
 
+    10）
+        PythonTools
+        ;;
+
     *)
         echo -e "\033[31m Sorry wrong selection  \033[0m" ;;
+    esac
+    read -p "Hit any key to continue" option 
+done
+
+function PythonTools(){
+    echo -e "$yellow 1) Python3"
+    echo -e "$blue 2) Jupyter Notebook"
+    echo -e "$yellow 3) BeautifulSoup4 & requests"
+    echo -e "$blue 4) lxml"
+    echo -e "$yellow 5) scrapy"
+    echo -e "$blue 6) numpy"
+    echo -e "$yellow 7) matplotlib"
+    echo -e "$blue 8) pandas & scipy"
+    echo -e "$yellow 9) Sklearn"
+    echo -e "$blue 10) Go back"
+    read -p "Enter your choice:" items
+}
+
+while [ true ]
+do
+    logo
+    line
+    PythonTools
+    line
+    case $items in
+    0)
+        break ;;
+    1)
+        pkg install python python-dev clang -y
+        apt install libxml2 libxml2-dev libxslt libxslt-dev -y
+        apt install openssl libffi libffi-dev openssl-tool openssl-dev -y
+        apt install fftw fftw-dev libzmq libzmq-dev freetype freetype-dev -y
+        apt install libpng libpng-dev pkg-config scrypt -y
+        pkg install libcrypt libcrypt-dev ccrypt libgcrypt libgcrypt-dev -y
+        pkg install libjpeg-turbo-dev libllvm-dev openjpeg -y
+        pip install --upgrade pip
+		echo -e "$blue Sucessfully"
+        ;;
+
+    2)
+        apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev libpng libpng-dev pkg-config -y
+        pip install --upgrade pip
+        pip install jupyter 
+        echo -e "$blue Sucessfully";;
+    3)
+        pip install BeautifulSoup4 requests
+        echo -e "$yellow Sucessfully";;
+    4)  
+        apt-get install clang libxml2 libxml2-dev libxslt libxslt-dev -y
+        pip install lxml
+        echo -e "$blue Sucessfully";;
+    5)
+        if ! [ -x "$(command -v wget)" ];then
+            apt install wget -y
+        fi
+        wget https://github.com/ivitan/Shell/releases/download/Scrapy/openssl_1.1.1-2_arm.deb.gz -O ~/scrapy
+        wget https://github.com/ivitan/Shell/releases/download/Scrapy/openssl-dev_1.1.1-2_arm.deb.gz -O ~/scrapy
+        wget https://github.com/ivitan/Shell/releases/download/Scrapy/openssl-tool_1.1.1-2_arm.deb.gz -O ~/scrapy
+        cd ~/scrapy
+        gunzip openssl_1.1.1-2_arm.deb.gz
+        gunzip openssl-dev_1.1.1-2_arm.deb.gz
+        gunzip openssl-tool_1.1.1-2_arm.deb.gz
+        dpkg -i openssl_1.1.1-2_arm.deb
+        dpkg -i openssl-dev_1.1.1-2_arm.deb
+        dpkg -i openssl-tool_1.1.1-2_arm.deb
+
+        apt install openssl libffi libffi-dev
+        pip install scrapy
+        echo -e "$yellow Sucessfully";;
+    6)
+        apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev  libpng libpng-dev pkg-config -y
+        pip install numpy
+        echo -e "$blue Sucessfully";;
+    7)
+        apt install freetype freetype-dev libpng libpng-dev pkg-config libpng -y
+        pip install matplotlib
+        echo -e "$yellow Sucessfully";;
+    8)
+        pip install pandas
+        pkg install scipy -y
+        echo -e "$blue Sucessfully";;
+    9)
+        # 链接到了termux社区一位贡献者(its-pointless)编译的源
+        curl -L https://its-pointless.github.io/setup-pointless-repo.sh | sh
+        pkg install scipy numpy Sklearn -y
+        echo -e "$yellow Sucessfully";;
+    10)
+        menu
+        ;;
+    *)
+        echo "Sorry wrong selection" ;;
     esac
     read -p "Hit any key to continue" option 
 done
