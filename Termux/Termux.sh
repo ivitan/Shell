@@ -35,7 +35,7 @@ function menu() {
 function Termux(){
     case $option in
         0)
-        break ;;
+        exit;;
         
         1)
             touch $HOME/.hushlogin
@@ -157,6 +157,9 @@ function PythonTools(){
 
 function PyItems() {
     case $PyItems in
+        0)
+        exit ;;
+        
         1)
             pkg install python python-dev clang -y
             apt install libxml2 libxml2-dev libxslt libxslt-dev -y
@@ -260,7 +263,6 @@ function PyItems() {
     read -p "Hit any key go back" option
     PyItems
 }
-
 line
 logo
 line
