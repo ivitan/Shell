@@ -29,11 +29,11 @@ function menu() {
     echo -e "$yellow 8) 更换清华源"
     echo -e "$blue 9) 获取储存权限"
     echo -e "$yellow 10) Python Tools"
-    echo -e "$yellow 11) 其他小工具"
-    read -p "Enter your choice:" option
+    echo -e "$blue 11) 其他小工具"
 }
 
 function Termux(){
+    read -p "Hit your choice # " option
     case $option in
         0)
         exit;;
@@ -105,7 +105,7 @@ function Termux(){
             menu
             Termux
         ;;
-
+        
         7)
             apt install git  wget -y
             wget -O ~/.zshrc https://github.com/ivitan/UnixConfig/releases/download/zshrc/zshrc
@@ -135,7 +135,7 @@ function Termux(){
             PythonTools
             PyItems
         ;;
-
+        
         11)
             line
             Tools
@@ -143,10 +143,10 @@ function Termux(){
         ;;
         
         *)
-        echo -e "\033[31m Sorry wrong selection  \033[0m" ;;
+            echo -e "\033[31m Sorry wrong selection  \033[0m"
+            Termux
+        ;;
     esac
-    read -p "Hit any key to continue # " option
-    menu
 }
 
 function PythonTools(){
@@ -161,10 +161,10 @@ function PythonTools(){
     echo -e "$blue 8) pandas & scipy"
     echo -e "$yellow 9) Sklearn"
     echo -e "$blue 10) Go back"
-    read -p "Hit your choice # " PyItems
 }
 
 function PyItems() {
+    read -p "Hit your choice # " PyItems
     case $PyItems in
         0)
         exit ;;
@@ -275,17 +275,16 @@ function PyItems() {
             menu
             Termux
         ;;
-
+        
         11)
             Tools
             items
-            ;;
-
+        ;;
+        
         *)
-        echo "Sorry wrong selection" ;;
+            echo "Sorry wrong selection"
+            PyItems
     esac
-    read -p "Hit any key go back" PyItems
-    PyItems
 }
 
 function Tools(){
@@ -293,7 +292,7 @@ function Tools(){
     echo -e "$yellow 1) BaiduPCS-Go"
     echo -e "$blue 2) Adb&Fastboot"
     echo -e "$yellow 3) Java"
-    echo -e "$blue 3) atilo安装Linux发行版"
+    echo -e "$blue 4) atilo安装Linux发行版"
 }
 
 function  items() {
@@ -362,8 +361,9 @@ function  items() {
         
         * )
             echo -e "\033[31m Error,序号无效  \033[0m"
+            items
+        ;;
     esac
-    read -p "请重新输入序号# " items
 }
 
 logo
