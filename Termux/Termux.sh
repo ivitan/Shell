@@ -32,6 +32,20 @@ function menu() {
     read -p "Enter your choice:" option
 }
 
+function PythonTools(){
+    echo -e "$yellow 1) Python3"
+    echo -e "$blue 2) Jupyter Notebook"
+    echo -e "$yellow 3) BeautifulSoup4 & requests"
+    echo -e "$blue 4) lxml"
+    echo -e "$yellow 5) scrapy"
+    echo -e "$blue 6) numpy"
+    echo -e "$yellow 7) matplotlib"
+    echo -e "$blue 8) pandas & scipy"
+    echo -e "$yellow 9) Sklearn"
+    echo -e "$blue 10) Go back"
+    read -p "Enter your choice:" items
+}
+
 while [ true ]
 do
     logo
@@ -115,20 +129,6 @@ do
     esac
     read -p "Hit any key to continue" option 
 done
-
-function PythonTools(){
-    echo -e "$yellow 1) Python3"
-    echo -e "$blue 2) Jupyter Notebook"
-    echo -e "$yellow 3) BeautifulSoup4 & requests"
-    echo -e "$blue 4) lxml"
-    echo -e "$yellow 5) scrapy"
-    echo -e "$blue 6) numpy"
-    echo -e "$yellow 7) matplotlib"
-    echo -e "$blue 8) pandas & scipy"
-    echo -e "$yellow 9) Sklearn"
-    echo -e "$blue 10) Go back"
-    read -p "Enter your choice:" items
-}
 
 while [ true ]
 do
