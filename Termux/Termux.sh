@@ -143,7 +143,7 @@ function Termux(){
         ;;
         
         *)
-            echo -e "\033[31m Sorry wrong selection  \033[0m"
+            echo -e "\033[31m 序号无效,请重试 \033[0m"
             Termux
         ;;
     esac
@@ -282,7 +282,7 @@ function PyItems() {
         ;;
         
         *)
-            echo "Sorry wrong selection"
+            echo -e "\033[31m 序号无效,请重试 \033[0m"
             PyItems
     esac
 }
@@ -293,23 +293,25 @@ function Tools(){
     echo -e "$blue 2) Adb&Fastboot"
     echo -e "$yellow 3) Java"
     echo -e "$blue 4) atilo安装Linux发行版"
+    echo -e "$yellow 5) Go back"
 }
 
 function  items() {
     read -p "请输入择序号：" items
     case $items in
         1)
-            pkg in -y golang git
-            git clone https://github.com/iikira/BaiduPCS-Go.git ~/BaiduPCS-Go
-            cd ~/BaiduPCS-Go/
-            echo -e "编译时间较长，请耐心等待"
-            sleep 2s
-            GOOS=android GOARCH=arm64 go build -o bdy main.go
-            mv -f bdy ~
-            cd ~
-            rm -rf ~/BaiduPCS-Go/
-            chmod -Rf 777 ~/go/
-            rm -rf ~/go/
+            if ! [ -x "$(command -v wget)" ];then
+                apt install wget -y
+            fi
+            wget -O ~/yun.zip https://github.com/iikira/BaiduPCS-Go/releases/latest/download/v3.6.1/BaiduPCS-Go-v3.6.1-linux-arm64.zip
+            if ! [ -x "$(command -v unzip)" ];then
+                apt install unzip -y
+            fi
+            unzip ~/yun.zip -d ~/yun
+            rm -rf ~/yun.zip
+            mv ~/yun/BaiduPCS-GO $PREFIX/bin/yun
+            chmod -Rf 777 $PREFIX/bin/yun
+            yun
             line
             menu
             items
@@ -320,6 +322,9 @@ function  items() {
                 apt install wget -y
             fi
             wget https://github.com/ivitan/Shell/releases/download/Adb/adb.zip -O ~/adb.zip
+            if ! [ -x "$(command -v unzip)" ];then
+                apt install unzip -y
+            fi
             unzip ~/adb.zip -d ~/
             rm -rf ~/adb.zip
             mv -f ~/adb $PREFIX/bin/
@@ -356,11 +361,15 @@ function  items() {
             items
         ;;
         
+        5)
+            Termux
+        ;;
+        
         0)
         exit ;;
         
         * )
-            echo -e "\033[31m Error,序号无效  \033[0m"
+            echo -e "\033[31m 序号无效,请重试 \033[0m"
             items
         ;;
     esac
