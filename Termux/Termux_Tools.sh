@@ -18,7 +18,7 @@ function line(){
 }
 
 function menu() {
-    echo -e "$yellow 1) Baiduyun-Pcs"
+    echo -e "$yellow 1) BaiduPCS-Go"
     echo -e "$blue 2) Adb&Fastboot"
     echo -e "$yellow 3) Java"
     echo -e "$blue 3) atilo安装Linux发行版"
@@ -29,7 +29,7 @@ read -p "请输入择序号：" items
 case $items in
 1 )
     pkg in -y golang git
-    git clone https://github.com/iikira/BaiduPCS-Go.git
+    git clone https://github.com/iikira/BaiduPCS-Go.git ~/BaiduPCS-Go
     cd ~/BaiduPCS-Go/
     echo -e "编译时间较长，请耐心等待"
     sleep 2s
