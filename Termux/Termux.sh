@@ -140,6 +140,7 @@ function Termux(){
             line
             Tools
             items
+        ;;
         
         *)
         echo -e "\033[31m Sorry wrong selection  \033[0m" ;;
