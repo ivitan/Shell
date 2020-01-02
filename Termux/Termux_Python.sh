@@ -1,5 +1,6 @@
 #! /bin/bash
 #Copyright by Vitan @ 2019
+
 blue="\033[36m"
 yellow="\033[33m"
 
@@ -63,9 +64,12 @@ do
         pip install lxml
         echo -e "$blue Sucessfully";;
     5)
-        wget https://github.com/termux/termux-packages/files/2408158/openssl_1.1.1-2_arm.deb.gz ~/scrapy
-        wget https://github.com/termux/termux-packages/files/2408159/openssl-dev_1.1.1-2_arm.deb.gz ~/scrapy
-        wget https://github.com/termux/termux-packages/files/2408160/openssl-tool_1.1.1-2_arm.deb.gz ~/scrapy
+        if ! [ -x "$(command -v wget)" ];then
+            apt install wget -y
+        fi
+        wget https://github.com/ivitan/Shell/releases/download/Scrapy/openssl_1.1.1-2_arm.deb.gz -O ~/scrapy
+        wget https://github.com/ivitan/Shell/releases/download/Scrapy/openssl-dev_1.1.1-2_arm.deb.gz -O ~/scrapy
+        wget https://github.com/ivitan/Shell/releases/download/Scrapy/openssl-tool_1.1.1-2_arm.deb.gz -O ~/scrapy
         cd ~/scrapy
         gunzip openssl_1.1.1-2_arm.deb.gz
         gunzip openssl-dev_1.1.1-2_arm.deb.gz

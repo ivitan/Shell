@@ -25,7 +25,7 @@ function menu() {
 }
 
 function  items() {
-read -p "选择的序号是：" items
+read -p "请输入择序号：" items
 case $items in
 1 )
     pkg in -y golang git
@@ -42,7 +42,9 @@ case $items in
     menu ; items ;;
 
 2 ) 
-    pkg in -y unzip wget
+    if ! [ -x "$(command -v wget)" ];then
+        apt install wget -y
+    fi
     wget https://github.com/ivitan/Shell/releases/download/Adb/adb.zip -O ~/adb.zip
     unzip ~/adb.zip -d ~/
     rm -rf ~/adb.zip
@@ -53,14 +55,18 @@ case $items in
     menu ; items ;;
 
 3 )
-    pkg in -y wget
+    if ! [ -x "$(command -v wget)" ];then
+        apt install wget -y
+    fi
     wget https://github.com/ivitan/Shell/releases/download/Java/java8.deb -O ~/Java.deb
     dpkg -i ~/Java.deb
     rm -rf ~/Java.deb
     menu ; items ;;     
 
 4 )
-    pkg in -y wget
+    if ! [ -x "$(command -v wget)" ];then
+        apt install wget -y
+    fi
     wget -O ~/atilo.deb https://github.com/ivitan/Shell/releases/download/atilo/atilo.deb
     dpkg -i ~/atilo.deb
     rm -rf ~/atilo.deb
@@ -77,5 +83,6 @@ esac
 }
 
 logo
+line
 menu
 items
