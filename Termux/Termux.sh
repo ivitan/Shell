@@ -18,7 +18,7 @@ function logo(){
 }
 
 function menu() {
-    echo -e "$yellow 0 ) 退出"
+    echo -e "$yellow 0) 退出"
     echo -e "$blue 1) 启动空白问候语"
     echo -e "$yellow 2) 恢复双层键盘"
     echo -e "$blue 3) 安装 SSH"
@@ -104,6 +104,7 @@ function Termux(){
             menu
             Termux
         ;;
+        
         7)
             apt install git  wget -y
             wget -O ~/.zshrc https://github.com/ivitan/UnixConfig/releases/download/zshrc/zshrc
@@ -136,10 +137,9 @@ function Termux(){
         *)
         echo -e "\033[31m Sorry wrong selection  \033[0m" ;;
     esac
-    read -p "Hit any key to continue" option
+    read -p "Hit any key to continue # " option
     menu
 }
-
 
 function PythonTools(){
     echo -e "0）Exit"
@@ -153,7 +153,8 @@ function PythonTools(){
     echo -e "$blue 8) pandas & scipy"
     echo -e "$yellow 9) Sklearn"
     echo -e "$blue 10) Go back"
-    read -p "Enter your choice:" PyItems
+    echo -e "$yellow 11) 其他小工具"
+    read -p "Hit your choice # " PyItems
 }
 
 function PyItems() {
@@ -171,6 +172,7 @@ function PyItems() {
             pkg install libjpeg-turbo-dev libllvm-dev openjpeg -y
             pip install --upgrade pip
             echo -e "$blue Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -180,6 +182,7 @@ function PyItems() {
             pip install --upgrade pip
             pip install jupyter
             echo -e "$blue Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -187,6 +190,7 @@ function PyItems() {
         3)
             pip install BeautifulSoup4 requests
             echo -e "$yellow Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -195,6 +199,7 @@ function PyItems() {
             apt-get install clang libxml2 libxml2-dev libxslt libxslt-dev -y
             pip install lxml
             echo -e "$blue Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -217,6 +222,7 @@ function PyItems() {
             apt install openssl libffi libffi-dev
             pip install scrapy
             echo -e "$yellow Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -225,6 +231,7 @@ function PyItems() {
             apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev  libpng libpng-dev pkg-config -y
             pip install numpy
             echo -e "$blue Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -233,6 +240,7 @@ function PyItems() {
             apt install freetype freetype-dev libpng libpng-dev pkg-config libpng -y
             pip install matplotlib
             echo -e "$yellow Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -241,6 +249,7 @@ function PyItems() {
             pip install pandas
             pkg install scipy -y
             echo -e "$blue Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -250,6 +259,7 @@ function PyItems() {
             curl -L https://its-pointless.github.io/setup-pointless-repo.sh | sh
             pkg install scipy numpy Sklearn -y
             echo -e "$yellow Sucessfully"
+            line
             PythonTools
             PyItems
         ;;
@@ -258,6 +268,12 @@ function PyItems() {
             menu
             Termux
         ;;
+
+        11)
+            Tools
+            items
+            ;;
+
         *)
         echo "Sorry wrong selection" ;;
     esac
@@ -276,7 +292,7 @@ function Tools(){
 function  items() {
     read -p "请输入择序号：" items
     case $items in
-        1 )
+        1)
             pkg in -y golang git
             git clone https://github.com/iikira/BaiduPCS-Go.git ~/BaiduPCS-Go
             cd ~/BaiduPCS-Go/
@@ -293,7 +309,7 @@ function  items() {
             items
         ;;
         
-        2 )
+        2)
             if ! [ -x "$(command -v wget)" ];then
                 apt install wget -y
             fi
@@ -309,7 +325,7 @@ function  items() {
             items
         ;;
         
-        3 )
+        3)
             if ! [ -x "$(command -v wget)" ];then
                 apt install wget -y
             fi
@@ -321,7 +337,7 @@ function  items() {
             items
         ;;
         
-        4 )
+        4)
             if ! [ -x "$(command -v wget)" ];then
                 apt install wget -y
             fi
@@ -334,16 +350,15 @@ function  items() {
             items
         ;;
         
-        0 )
+        0)
         exit ;;
         
         * )
             echo -e "\033[31m Error,序号无效  \033[0m"
     esac
-    read -p "请重新输入序号: " items
+    read -p "请重新输入序号# " items
 }
 
-line
 logo
 line
 menu
