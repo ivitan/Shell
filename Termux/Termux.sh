@@ -1,4 +1,4 @@
-#!/bin/bash
+ #!/bin/bash
 #Copyright by Vitan @ 2019
 
 blue="\033[36m"
@@ -30,20 +30,6 @@ function menu() {
     echo -e "$blue 9) 获取储存权限"
     echo -e "$yellow 10) Python Tools"
     read -p "Enter your choice:" option
-}
-
-function PythonTools(){
-    echo -e "$yellow 1) Python3"
-    echo -e "$blue 2) Jupyter Notebook"
-    echo -e "$yellow 3) BeautifulSoup4 & requests"
-    echo -e "$blue 4) lxml"
-    echo -e "$yellow 5) scrapy"
-    echo -e "$blue 6) numpy"
-    echo -e "$yellow 7) matplotlib"
-    echo -e "$blue 8) pandas & scipy"
-    echo -e "$yellow 9) Sklearn"
-    echo -e "$blue 10) Go back"
-    read -p "Enter your choice:" items
 }
 
 while [ true ]
@@ -130,13 +116,27 @@ do
     read -p "Hit any key to continue" option 
 done
 
-while [ true ]
-do
+
+function PythonTools(){
+    echo -e "$yellow 1) Python3"
+    echo -e "$blue 2) Jupyter Notebook"
+    echo -e "$yellow 3) BeautifulSoup4 & requests"
+    echo -e "$blue 4) lxml"
+    echo -e "$yellow 5) scrapy"
+    echo -e "$blue 6) numpy"
+    echo -e "$yellow 7) matplotlib"
+    echo -e "$blue 8) pandas & scipy"
+    echo -e "$yellow 9) Sklearn"
+    echo -e "$blue 10) Go back"
+    read -p "Enter your choice:" PyItems
+}
+
+function PyItems() {
     logo
     line
-    PythonTools
+    PythonTools;PyItems;;
     line
-    case $items in
+    case $PyItems in
     0)
         break ;;
     1)
@@ -204,5 +204,5 @@ do
     *)
         echo "Sorry wrong selection" ;;
     esac
-    read -p "Hit any key to continue" option 
-done
+    read -p "Hit any key go back" option 
+}
