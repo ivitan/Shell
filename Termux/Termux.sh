@@ -67,7 +67,7 @@ function Termux(){
         ;;
         
         4)
-            apt install git zsh curl wet -y
+            apt install git zsh curl wget -y
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             chsh -s zsh
             git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
