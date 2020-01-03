@@ -72,6 +72,7 @@ function Termux(){
             chsh -s zsh
             git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
             ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+            rm -rf ~/.zshrc
             wget https://github.com/ivitan/UnixConfig/releases/download/zshrc/zshrc -O ~/.zshrc 
             source ~/.zshrc
             echo -e "$blue Successfuly"
