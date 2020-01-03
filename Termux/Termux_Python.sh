@@ -40,20 +40,20 @@ do
         0)
         break ;;
         1)
-            pkg install python python-dev clang -y
-            apt install libxml2 libxml2-dev libxslt libxslt-dev -y
-            apt install openssl libffi libffi-dev openssl-tool openssl-dev -y
-            apt install fftw fftw-dev libzmq libzmq-dev freetype freetype-dev -y
-            apt install libpng libpng-dev pkg-config scrypt -y
-            pkg install libcrypt libcrypt-dev ccrypt libgcrypt libgcrypt-dev -y
-            pkg install libjpeg-turbo-dev libllvm-dev openjpeg -y
+            pkg install python clang -y
+            apt install libxml2 libxslt -y
+            apt install openssl libffi openssl-tool -y
+            apt install fftw libzmq freetype -y
+            apt install libpng pkg-config scrypt -y
+            pkg install libcrypt ccrypt libgcrypt -y
+            pkg install libjpeg-turbo libllvm openjpeg -y
             pip install --upgrade pip
             echo -e "$blue Sucessfully"
             line
         ;;
         
         2)
-            apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev libpng libpng-dev pkg-config -y
+            apt install clang python fftw libzmq freetype libpng pkg-config -y
             pip install --upgrade pip
             pip install jupyter
             echo -e "$blue Sucessfully"
@@ -67,7 +67,7 @@ do
         ;;
 
         4)
-            apt-get install clang libxml2 libxml2-dev libxslt libxslt-dev -y
+            apt-get install clang libxml2 libxslt -y
             pip install lxml
             echo -e "$blue Sucessfully"
             line
@@ -88,21 +88,21 @@ do
             dpkg -i openssl-dev_1.1.1-2_arm.deb
             dpkg -i openssl-tool_1.1.1-2_arm.deb
             
-            apt install openssl libffi libffi-dev
+            apt install openssl libffi
             pip install scrapy
             echo -e "$yellow Sucessfully"
             line
         ;;
 
         6)
-            apt install clang python python-dev fftw libzmq libzmq-dev freetype freetype-dev  libpng libpng-dev pkg-config -y
+            apt install clang python fftw libzmq freetype libpng pkg-config -y
             pip install numpy
             echo -e "$blue Sucessfully"
             line
         ;;
 
         7)
-            apt install freetype freetype-dev libpng libpng-dev pkg-config libpng -y
+            apt install freetype libpng pkg-config libpng -y
             pip install matplotlib
             echo -e "$yellow Sucessfully"
             line

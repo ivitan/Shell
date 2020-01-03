@@ -100,6 +100,7 @@ function Termux(){
             apt install vim wget -y
             curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             wget https://github.com/ivitan/UnixConfig/releases/download/vimrc/vimrc  -O ~/.vimrc 
+            vim +PlugInstall +qall
             echo -e "$blue Sucessfully"
             line
             menu
