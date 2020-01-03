@@ -53,7 +53,7 @@ do
         ;;
         
         2)
-            apt install clang python fftw libzmq freetype libpng pkg-config -y
+            apt install ndk-sysroot fftw libsodium libzmq freetype libpng glib pkg-config -y
             pip install --upgrade pip
             pip install jupyter
             echo -e "$blue Sucessfully"
