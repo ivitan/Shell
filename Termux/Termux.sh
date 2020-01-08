@@ -84,12 +84,13 @@ function Termux(){
         5)
             pkg install nodejs -y
             git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/hexo
-            git clone https://github.com/ivitan/hexo-theme-cutie.git $HOME/hexo/themes/cutie
+            git clone https://github.com/ivitan/Icarus.git $HOME/hexo/themes/icarus
             cd ~/hexo
             npm i -g hexo-cli
             npm i hexo-deployer-git --save
             npm un hexo-renderer-marked --save
             npm i hexo-renderer-markdown-it markdown-it-emoji markdown-it-mark markdown-it-deflist markdown-it-container --save
+            wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js  -O $HOME/hexo/node_modules\hexo-generator-index\lib\generator.js
             echo -e "$yellow Successfuly"
             line
             menu
