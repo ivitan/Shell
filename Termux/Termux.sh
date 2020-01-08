@@ -90,7 +90,7 @@ function Termux(){
             npm i hexo-deployer-git --save
             npm un hexo-renderer-marked --save
             npm i hexo-renderer-markdown-it markdown-it-emoji markdown-it-mark markdown-it-deflist markdown-it-container --save
-            wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js  -O $HOME/hexo/node_modules\hexo-generator-index\lib\generator.js
+            wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js  -O $HOME/hexo/node_modules/hexo-generator-index/lib/generator.js
             echo -e "$yellow Successfuly"
             line
             menu
