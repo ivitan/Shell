@@ -4,23 +4,13 @@
 <h2 align="center">Vitan's Shell Scripts</h2>
 </p>
 
-# Termux
+## Termux Config
 ### via curl
 ```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ivitan/Shell/master/Termux/Termux.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/ivitan/Shell/master/Termux/Termux.sh)"
 ```
 
 ### via wget
 ```bash
-sh -c "$(wget https://raw.githubusercontent.com/ivitan/Shell/master/Termux/Termux.sh -O -)"
-```
-
-## CentOS
-### via curl
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ivitan/Shell/master/CentOS/centos_dns.sh)"
-```
-### via wget
-```bash
-sh -c "$(wget https://raw.githubusercontent.com/ivitan/Shell/master/CentOS/centos_dns.sh -O -)"
+bash -c "$(wget -O- https://raw.githubusercontent.com/ivitan/Shell/master/Termux/Termux.sh)"
 ```
