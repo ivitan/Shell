@@ -82,7 +82,7 @@ function Termux(){
         ;;
         
         5)
-            pkg install nodejs -y
+            pkg install nodejs-lts -y
             git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/hexo
             git clone https://github.com/ivitan/Icarus.git $HOME/hexo/themes/icarus
             cd ~/hexo
