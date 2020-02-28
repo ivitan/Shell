@@ -71,7 +71,7 @@ function Termux(){
     echo -e "$yellow 5) 更换清华源"
     echo -e "$blue 6) 获取存储权限"  
     echo -e "$yellow 7) 获取设备信息"
-    echo -e "$blue 8) 获取存储权限"  
+    echo -e "$blue 8) 重载Termux设置"  
     echo -e "$yellow 9) 阻止CPU休眠"
     echo -e "$blue 10) 允许CPU休眠" 
     echo -e "$yellow 11) 安装 Termux-Api"
@@ -148,7 +148,7 @@ function TermuxItem(){
         ;;
         
         8)
-            termux-setup-storage
+            termux-reload-settings
             line
             Termux
             TermuxItem
