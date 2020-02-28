@@ -63,8 +63,8 @@ function MenuItem(){
 }
 
 function Termux(){
-    echo -e "$yellow 0) 返回主菜单"
-    echo -e "$blue 1) 空白问候语"
+    echo -e "$blue 0) 返回主菜单"
+    echo -e "$yellow 1) 空白问候语"
     echo -e "$blue 2) 辅助键盘"
     echo -e "$yellow 3) 修改启动问候语"
     echo -e "$blue 4) Oh-My-Zsh"
@@ -735,19 +735,19 @@ function  DevItem() {
 
 function security() {
     echo -e "$yellow 0) 返回主菜单"
-    echo -e "$yellow 1) 安装 Metasploit"
+    echo -e "$blue 1) 安装 Metasploit"
     echo -e "$yellow 2) 安装 Nmap"
-    echo -e "$yellow 3) 安装 Hydra"
+    echo -e "$blue 3) 安装 Hydra"
     echo -e "$yellow 4) 安装 SSLscan"
-    echo -e "$yellow 5) 安装 whatportis"
+    echo -e "$blue 5) 安装 whatportis"
     echo -e "$yellow 6) 安装 SQLmap"
-    echo -e "$yellow 7) 安装 RouterSploit"
+    echo -e "$blue 7) 安装 RouterSploit"
     echo -e "$yellow 8) 安装 Slowloris"
-    echo -e "$yellow 9) 安装 RED HAWK "
+    echo -e "$blue 9) 安装 RED HAWK "
     echo -e "$yellow 10) 安装 Cupp"
-    echo -e "$yellow 11) 安装 Hash-Buster"
+    echo -e "$blue 11) 安装 Hash-Buster"
     echo -e "$yellow 12) 安装 WPSeku"
-    echo -e "$yellow 13) 安装 XSStrike"
+    echo -e "$blue 13) 安装 XSStrike"
 }
 
 function SeItem(){
@@ -881,13 +881,13 @@ function SeItem(){
 
 function eggs(){
     echo -e "$yellow 0) 回主菜单"
-    echo -e "$yellow 1) screenfetch"
+    echo -e "$blue 1) screenfetch"
     echo -e "$yellow 2) neofetch"
-    echo -e "$yellow 3) sl 火车"
+    echo -e "$blue 3) sl 火车"
     echo -e "$yellow 4) cmatrix"
-    echo -e "$yellow 5) nyancat"
+    echo -e "$blue 5) nyancat"
     echo -e "$yellow 6) fortune"
-    echo -e "$yellow 7) apt的超级牛力"
+    echo -e "$blue 7) apt的超级牛力"
     echo -e "$yellow 8) telnet星球大战"
 }
 
