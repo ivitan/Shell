@@ -385,7 +385,7 @@ function  items() {
             chmod -Rf 777 $PREFIX/bin/yun
             echo "安装完成 使用 yun 打开"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -406,7 +406,7 @@ function  items() {
             chmod +x $PREFIX/bin/fastboot
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -420,7 +420,7 @@ function  items() {
             rm -rf ~/Java.deb
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -434,7 +434,7 @@ function  items() {
             rm -rf ~/atilo.deb
             atilo
             line
-            tools
+            Tools
             items
         ;;
 
@@ -442,7 +442,7 @@ function  items() {
         	pkg install -y nginx
 		    echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
 
@@ -450,7 +450,7 @@ function  items() {
         	pkg install -y apache2
 		    echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
 
@@ -458,7 +458,7 @@ function  items() {
             pkg install -y tmux
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -474,15 +474,20 @@ function  items() {
             wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js  -O $HOME/hexo/node_modules/hexo-generator-index/lib/generator.js
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
         
         9)
         	pkg install -y openssh
-		    echo "安装完成"
+            read -p "请输入 SSH 用户名 # " UserName
+            git config --global user.name "${UserName}"
+            read -p "请输入 SSH 邮箱 # " UserEmail
+            git config --global user.email "${UserEmail}"
+            ssh-keygen -t rsa -C "${UserEmail}"
+            echo -e "$yellow 配置完成"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -506,7 +511,7 @@ function  items() {
 		        echo "下载失败！"
 	        fi
             line
-            tools
+            Tools
             items
         ;;
         
@@ -515,7 +520,7 @@ function  items() {
             pip install you-get
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -526,7 +531,7 @@ function  items() {
             npm install -g @nondanee/unblockneteasemusic
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -540,7 +545,7 @@ function  items() {
             chmod +x /data/data/com.termux/files/usr/bin/startkod
             echo "安装完成！请使用 startkod 命令启动可道云服务，Ctrl+C关闭。"
             line
-            tools
+            Tools
             items
         ;;
 
@@ -548,7 +553,7 @@ function  items() {
             pkg install -y elinks
             echo "安装完成！"
             line
-            tools
+            Tools
             items
         ;;
         
@@ -556,7 +561,7 @@ function  items() {
             pkg install -y mpv
             echo "安装完成"
             line
-            tools
+            Tools
             items
         ;;       
                         
@@ -573,7 +578,8 @@ function  items() {
             echo "php ~/BiliHelper-personal/index.php" > $PREFIX/bin/bilihelper
             chmod +x /data/data/com.termux/files/usr/bin/bilihelper
             echo "安装完成！修改 ~/BiliHelper-personal/conf/user.conf 修改配置文件，填入自己的帐号信息，并使用 bilihelper 命令运行BiliHelper。"
-            tools
+            line
+            Tools
             items
         ;;
         
