@@ -60,6 +60,7 @@ function MenuItem(){
             line
             eggs
             EggItem
+        ;;
 
         *)
             echo -e "\033[31m 序号无效,请重试 \033[0m"
