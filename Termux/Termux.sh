@@ -502,7 +502,7 @@ function  items() {
                 unzip AriaNg-1.1.4-AllInOne.zip
                 mv -f ~/index.html $PREFIX/share/nginx/html/index.html
                 mv -f ~/LICENSE $PREFIX/share/nginx/html/LICENSE
-                echo -e "nginx\naria2c --conf-path=$HOME/aria2/aria2.conf -D" >$PREFIX/bin/startaria2
+                echo -e "nginx\naria2c --conf-path=$HOME/aria2/aria2.conf -D" > $PREFIX/bin/startaria2
                 echo -e "nginx -s stop\nkillall aria2c" > $PREFIX/bin/stoparia2
                 chmod +x $PREFIX/bin/startaria2
                 chmod +x $PREFIX/bin/stoparia2
