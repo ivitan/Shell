@@ -23,6 +23,7 @@ function menu() {
     echo -e "$yellow 2) 开发环境"
     echo -e "$blue 3) 信息安全工具"
     echo -e "$yellow 4) 实用工具"
+    echo -e "$blue 5) 彩蛋"
 }
 
 function MenuItem(){
@@ -54,6 +55,11 @@ function MenuItem(){
             Tools
             items
         ;;
+
+        5)
+            line
+            eggs
+            EggItem
 
         *)
             echo -e "\033[31m 序号无效,请重试 \033[0m"
