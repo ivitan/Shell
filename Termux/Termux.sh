@@ -372,6 +372,7 @@ function Tools(){
     echo -e "$yellow 14) ELinks 纯文本浏览器"
     echo -e "$blue 15) MPV 播放器"
     echo -e "$yellow 16) BiliHelper B站直播脚本"
+    echo -e "$blue 17) CHFS 文件共享"
 }
 
 function  items() {
@@ -478,7 +479,7 @@ function  items() {
             npm i hexo-deployer-git --save
             npm un hexo-renderer-marked --save
             npm i hexo-renderer-markdown-it markdown-it-emoji markdown-it-mark markdown-it-deflist markdown-it-container --save
-            wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js  -O $HOME/hexo/node_modules/hexo-generator-index/lib/generator.js
+            wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js -O $HOME/hexo/node_modules/hexo-generator-index/lib/generator.js
             echo "安装完成"
             line
             Tools
@@ -589,6 +590,18 @@ function  items() {
             Tools
             items
         ;;
+
+        17)
+            wget https://iscute.cn/tar/chfs/2.0/chfs-linux-arm64-2.0.zip -O ~/chfs-linux-arm64-2.0.zip
+            unzip ~/chfs-linux-arm64-2.0.zip 
+            cd ~/chfs-linux-arm64-2.0
+            chmod +x chfs
+            ./chfs --port=8080 --path="/storage" --allow=192.168.0.1-192.168.0.200 --rule="::r|zsxwz:a1314520:r:Download:rw"
+            echo "配置完成，浏览器打开192.168.XXX.XXX:8080！更多帮助请查阅 https://iscute.cn/chfs"
+            line
+            Tools
+            items
+            ;;
         
         0)
             line
