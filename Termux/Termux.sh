@@ -119,6 +119,7 @@ function TermuxItem(){
         ;;
         
         4)
+            apt update && apt upgrate
             apt install git zsh curl wget -y
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             chsh -s zsh
