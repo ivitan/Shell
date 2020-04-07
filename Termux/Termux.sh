@@ -473,14 +473,16 @@ function  items() {
         
         8)
             pkg install nodejs-lts -y
-            git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/hexo
-            git clone https://github.com/ivitan/indigo.git $HOME/hexo/themes/indigo
+            git clone -b source  https://github.com/iVitan/ivitan.github.io.git $HOME/Hexo
+            git clone https://github.com/ivitan/indigo.git $HOME/Hexo/themes/indigo
             cd ~/hexo
-            npm i -g hexo-cli
-            npm i hexo-deployer-git --save
-            npm un hexo-renderer-marked --save
-            npm i hexo-renderer-markdown-it markdown-it-emoji markdown-it-mark markdown-it-deflist markdown-it-container --save
-            wget https://github.com/ivitan/Icarus/releases/download/Top/generator.js -O $HOME/hexo/node_modules/hexo-generator-index/lib/generator.js
+            npm install -g hexo-cli
+            npm install hexo-deployer-git --save
+            npm install hexo-renderer-less --save
+            npm install hexo-generator-feed --save
+            npm install hexo-generator-json-content --save
+            npm install hexo-helper-qrcode --save
+            wget https://github.com/ivitan/ivitan.github.io/releases/download/Pin/generator.js -O $HOME/Hexo/node_modules/hexo-generator-index/lib/generator.js
             echo "安装完成"
             line
             Tools
