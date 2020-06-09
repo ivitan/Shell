@@ -122,9 +122,9 @@ function TermuxItem(){
             apt update && apt upgrate
             apt install git zsh curl wget -y
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-            chsh -s zsh
+            chsh -s $(which zsh)
             rm -rf ~/.zshrc
-            wget https://github.com/ivitan/UnixConfig/releases/download/zshrc/zshrc -O ~/.zshrc
+            wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Termux/zshrc -O ~/.zshrc
             source ~/.zshrc
             echo -e "$blue 配置完成"
             line
@@ -506,7 +506,7 @@ function  items() {
             pkg install -y wget aria2 nginx unzip
             echo "创建配置文件..."
             mkdir ~/aria2
-            wget -O ~/aria2/aria2.conf https://github.com/ivitan/UnixConfig/releases/download/V0.01/aria2.conf
+            wget -O ~/aria2/aria2.conf https://github.com/ivitan/DotFiles/releases/download/V0.01/aria2.conf
             echo "将要从Github上下载AriaNg-1.1.4-AllInOne.zip，此版本更新于2019.10.8，截至2020.2.20为最新版。"
             wget https://github.com/mayswind/AriaNg/releases/download/1.1.4/AriaNg-1.1.4-AllInOne.zip ~/
             if [ -f ~/AriaNg-1.1.4-AllInOne.zip ]; then
@@ -646,7 +646,7 @@ function  DevItem() {
             echo "正在安装 Vim..."
             apt install vim wget -y
             curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            wget https://github.com/ivitan/UnixConfig/releases/download/vimrc/vimrc  -O ~/.vimrc
+            wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Termux/vimrc  -O ~/.vimrc
             vim +PlugInstall +qall
             echo -e "$blue 安装配置完成"
             line
