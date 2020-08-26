@@ -124,7 +124,7 @@ function TermuxItem(){
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
             chsh -s $(which zsh)
             rm -rf ~/.zshrc
-            wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Termux/zshrc -O ~/.zshrc
+            wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Linux/Termux/zshrc -O ~/.zshrc
             source ~/.zshrc
             echo -e "$blue 配置完成"
             line
@@ -482,6 +482,7 @@ function  items() {
             npm install hexo-generator-feed --save
             npm install hexo-generator-json-content --save
             npm install hexo-helper-qrcode --save
+            npm install hexo-all-minifier --save
             wget https://github.com/ivitan/ivitan.github.io/releases/download/Pin/generator.js -O $HOME/Hexo/node_modules/hexo-generator-index/lib/generator.js
             echo "安装完成"
             line
@@ -646,7 +647,7 @@ function  DevItem() {
             echo "正在安装 Vim..."
             apt install vim wget -y
             curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-            wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Termux/vimrc  -O ~/.vimrc
+            wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Linux/Termux/vimrc  -O ~/.vimrc
             vim +PlugInstall +qall
             echo -e "$blue 安装配置完成"
             line
