@@ -477,12 +477,7 @@ function  items() {
             git clone https://github.com/ivitan/indigo.git $HOME/Hexo/themes/indigo
             cd ~/hexo
             npm install -g hexo-cli
-            npm install hexo-deployer-git --save
-            npm install hexo-renderer-less --save
-            npm install hexo-generator-feed --save
-            npm install hexo-generator-json-content --save
-            npm install hexo-helper-qrcode --save
-            npm install hexo-all-minifier --save
+            npm install
             wget https://github.com/ivitan/ivitan.github.io/releases/download/Pin/generator.js -O $HOME/Hexo/node_modules/hexo-generator-index/lib/generator.js
             echo "安装完成"
             line
