@@ -12,8 +12,7 @@ color4="\e[0;34;40m"
 color5="\e[0;35;40m"
 color6="\e[0;37;40m"
 
-function logo()
-{
+function logo() {
     echo -e "$yellow
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                   _oo0oo_
@@ -39,27 +38,27 @@ function logo()
     "
 }
 
-function line()
-{
+function line() {
     echo -e "$blue ----------------------------------------------------------------------"
 }
 
 logo
 line
 
-if [ `rpm -qa | grep bind | wc -l` -ne 0 ];then
-    yum install bind-chroot -y &> /dev/null
+if [ $(rpm -qa | grep bind | wc -l) -ne 0 ]; then
+    yum install bind-chroot -y &>/dev/null
     echo -e "$blue Bind is installed"
 else
-    yum  install bind bind-utils bind-chroot -y &> /dev/null
+    yum install bind bind-utils bind-chroot -y &>/dev/null
     echo -e "$yellow  Installed!!!"
-    
-    SYSTEM=`rpm -q centos-release|cut -d- -f3`
+
+    SYSTEM=$(rpm -q centos-release | cut -d- -f3)
     if
-    [ $SYSTEM = "6" ];then
+        [ $SYSTEM = "6" ]
+    then
         service named start
         echo -e "$blue Install Success!!!"
-        elif [ $SYSTEM = "7" ];then
+    elif [ $SYSTEM = "7" ]; then
         systemctl start named
         echo -e "$blue Install Success!!!"
     else
@@ -71,8 +70,8 @@ fi
 line
 
 read -p "请输入主配置文件的名字(named)" NAMED
-if [ $NAMED ];then
-cat << EOF > /var/named/chroot/etc/named.conf
+if [ $NAMED ]; then
+    cat <<EOF >/var/named/chroot/etc/named.conf
 options {
         listen-on port 53 { any; };# 监听任何ip对53端口的请求
         listen-on-v6 port 53 { ::1; };
@@ -117,10 +116,10 @@ read -p "请输入正向解析域配置文件名称(vitan.me)" ZHENGXIANG
 read -p "请输入反向向解析域配置文件名称(149.28.197)" FANXIANG
 read -p "请输入反向IP(197.28.149)" FANIP
 
-if [ $ZHENGXIANG  ];then
+if [ $ZHENGXIANG ]; then
     cd /var/named/chroot/etc/
     cp -p named.rfc1912.zones $NAMED.zones
-cat << EOF > $NAMED.zones
+    cat <<EOF >$NAMED.zones
 zone "$ZHENGXIANG" IN {
         type master;
         file "$ZHENGXIANG.zone";
@@ -140,8 +139,8 @@ line
 cd /var/named/chroot/var/named
 cp -p named.localhost $ZHENGXIANG.zone
 
-if [ $ZHENGXIANG.zone ];then
-cat << EOF > $ZHENGXIANG.zone
+if [ $ZHENGXIANG.zone ]; then
+    cat <<EOF >$ZHENGXIANG.zone
 \$TTL 1D
 @       IN SOA  www.$ZHENGXIANG. mail.$ZHENGXIANG.me. (
                 2007101100      ; serial
@@ -163,8 +162,8 @@ line
 cd /var/named/chroot/var/named
 cp -p named.loopback $FANXIANG.zone
 
-if [ $FANXIANG.zone ];then
-cat << EOF > $FANXIANG.zone
+if [ $FANXIANG.zone ]; then
+    cat <<EOF >$FANXIANG.zone
 \$TTL 1D
 @       IN SOA  www.$ZHENGXIANG. mail.$ZHENGXIANG.me. (
                 2007101100      ; serial
@@ -186,11 +185,12 @@ line
 
 echo -e "$blue  Restart named service"
 
-SYSTEM=`rpm -q centos-release|cut -d- -f3`
+SYSTEM=$(rpm -q centos-release | cut -d- -f3)
 if
-[ $SYSTEM = "6" ] ; then
+    [ $SYSTEM = "6" ]
+then
     service named restart
-    elif [ $SYSTEM = "7" ] ; then
+elif [ $SYSTEM = "7" ]; then
     systemctl restart named
 else
     echo -e "$Blue  System not supported"
@@ -200,7 +200,7 @@ fi
 line
 
 echo -e "$yellow Cofiger resolv.conf"
-cat << EOF > /etc/resolv.conf
+cat <<EOF >/etc/resolv.conf
 search $ZHENGXIANG
 nameserver $FANXIANG
 EOF

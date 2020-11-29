@@ -16,11 +16,11 @@ kern=$(uname -r)
 # Bandwidth
 bwarr=($(curl -s --connect-timeout 5 $vm_addr/api/client/command.php?key=$vm_key\&hash=$vm_hash\&action=info\&bw=true | grep -oP '\<bw\>(.)*\<\/bw\>' | cut -d ">" -f2 | cut -d "<" -f1 | tr "," "\n"))
 # Uptime
-upth=$(uptime |  cut -d',' -f1)
+upth=$(uptime | cut -d',' -f1)
 # Disk
-dfh=($(df -h | grep xvda ))
+dfh=($(df -h | grep xvda))
 # Memory
-freeh=($(free -h | grep Mem ))
+freeh=($(free -h | grep Mem))
 # Top Processes
 toph=$(ps -eo pmem,pcpu,cmd | sort -k 1 -nr | head -5)
 # All
@@ -38,6 +38,6 @@ ${ver} \
 %0A TOP Processes(pmem,pcpu,cmd): \
 %0A ${toph}"
 
-curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d text="$report" > /dev/null
+curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d text="$report" >/dev/null
 
 exit 0

@@ -1,7 +1,6 @@
 #! /bin/bash
-power()
-{
-cat <<EOF
+power() {
+    cat <<EOF
     1. rw: read-write，可读写的权限
     2. ro：read-only，唯读的权限
     3. sync：资料同步写入到记忆体与硬碟当中
@@ -16,27 +15,27 @@ cat <<EOF
 EOF
 }
 power
-while true
-do
+while true; do
     read -p "输入权限选项:" ch
     case $ch in
-        1)PROMISSION="rw";;
-        2)PROMISSION="ro";;
-        3)PROMISSION="sync";;
-        4)PROMISSION="async";;
-        5)PROMISSION="no_root_squash";;
-        6)PROMISSION="root_squash";;
-        7)PROMISSION="all_squash";;
-        8)
+    1) PROMISSION="rw" ;;
+    2) PROMISSION="ro" ;;
+    3) PROMISSION="sync" ;;
+    4) PROMISSION="async" ;;
+    5) PROMISSION="no_root_squash" ;;
+    6) PROMISSION="root_squash" ;;
+    7) PROMISSION="all_squash" ;;
+    8)
         read -p "请输入UID:" U
         PROMISSION="anonuid=$U"
         ;;
-        9)
+    9)
         read -p "请输入UID:" G
-        PROMISSION="anongid=$G";;
-        10)PROMISSION="rsubtree_check";;
-        11)PROMISSION="no_subtree_check";;
-        *)echo '你输入数字超出范围';;
+        PROMISSION="anongid=$G"
+        ;;
+    10) PROMISSION="rsubtree_check" ;;
+    11) PROMISSION="no_subtree_check" ;;
+    *) echo '你输入数字超出范围' ;;
     esac
     break
 done

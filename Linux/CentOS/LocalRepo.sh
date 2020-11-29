@@ -8,7 +8,7 @@ mount /dev/cdrom /local
 
 PATH="/etc/yum.repos.d/local.repo"
 
-cat << EOF > $PATH
+cat <<EOF >$PATH
 [local]
 name=local
 baseurl=file:///local

@@ -16,13 +16,13 @@ if [ -z "$ping" ]; then
     # if never online then log and notify
     if [ ! -f $online ]; then
         touch $online
-        curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d text="GFW Monitor - OK:%0A$name is not blocked by GFW, $server is accessible." > /dev/null
+        curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d text="GFW Monitor - OK:%0A$name is not blocked by GFW, $server is accessible." >/dev/null
     fi
 else
     rm -rf $online
     if [ ! -f $offline ]; then
         touch $offline
-        curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d text="GFW Monitor - BLOCKED:%0A$name is blocked by GFW, $server is not accessible." > /dev/null
+        curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d text="GFW Monitor - BLOCKED:%0A$name is blocked by GFW, $server is not accessible." >/dev/null
     fi
 fi
 

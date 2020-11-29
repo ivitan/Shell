@@ -2,7 +2,7 @@
 blue="\033[36m"
 yellow="\033[33m"
 
-function logo(){
+function logo() {
     echo -e "$yellow
    ______           __  ____  _____ _____    _____ ___    __  _______  ___
   / ____/__  ____  / /_/ __ \/ ___// ___/   / ___//   |  /  |/  / __ )/   |
@@ -12,28 +12,28 @@ function logo(){
     "
 }
 
-function line(){
+function line() {
     echo -e "$blue ------------------------------------------------------------------"
 }
 
-function check_samba(){
-    if [ $UID -ne 0 ];then
+function check_samba() {
+    if [ $UID -ne 0 ]; then
         echo -e "$yellow Must to be use root for exec shell."
         echo -e "$yellow Please change root user"
         exit
     else
-        yum install samba samba-client -y &> /dev/null
+        yum install samba samba-client -y &>/dev/null
         echo -e "$yellow Samba installed successfully"
     fi
 }
 
-function anyone(){
+function anyone() {
     read -p "请输入要分享的目录名(/share)" DIR
     mkdir $DIR
     chmod 777 $DIR
     mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
-    
-    cat << EOF > /etc/samba/smb.conf
+
+    cat <<EOF >/etc/samba/smb.conf
     [global]
             workgroup = WORKGROUP
             server string = Samba Server Version %v
@@ -60,7 +60,7 @@ EOF
     service smb start
 }
 
-function adduser(){
+function adduser() {
     read -p "请输入组名" GROUP
     groupadd $GROUP
     read -p "请输入要创建的用户名" NAME
@@ -73,14 +73,14 @@ function adduser(){
     smbpasswd -a $NAME
 }
 
-function mima(){
+function mima() {
     read -p "请输入要分享的目录名(/share)" DIR
     mkdir $DIR
     chmod 777 $DIR
     mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
     adduser
-    
-    cat << EOF > /etc/samba/smb.conf
+
+    cat <<EOF >/etc/samba/smb.conf
     [global]
         workgroup = WORKGROUP
         server string = Samba Server Version %v
@@ -104,8 +104,8 @@ function mima(){
 EOF
 }
 
-function test(){
-    function test_menu(){
+function test() {
+    function test_menu() {
         echo
         echo "Select Item"
         echo -e "$blue 1.测试smb.conf是否正确"
@@ -115,32 +115,38 @@ function test(){
         echo -e "$blue5 .返回主菜单"
         read -p "Enter your choice:" options
     }
-    
-    while [ true ]
-    do
+
+    while [ true ]; do
         test_menu
         case $options in
-            0)
-            break ;;
-            1)
-            testparm ;;
-            2)
-            service smb reload && service smb restart ;;
-            3)
-            service iptables stop ;;
-            4)
-            setenforce 0 ;;
-            5)
-            menu ;;
-            *)
-                clear
-            echo "Sorry wrong selection" ;;
+        0)
+            break
+            ;;
+        1)
+            testparm
+            ;;
+        2)
+            service smb reload && service smb restart
+            ;;
+        3)
+            service iptables stop
+            ;;
+        4)
+            setenforce 0
+            ;;
+        5)
+            menu
+            ;;
+        *)
+            clear
+            echo "Sorry wrong selection"
+            ;;
         esac
         read -p "Hit any key to continue. Or CTRL D for exit" options
     done
 }
 
-function helper(){
+function helper() {
     clear
     cat <<EOT
     [global] 定义全局的配置，”workgroup”用来定义工作组
@@ -153,7 +159,7 @@ function helper(){
 EOT
     echo "samba 的找密码为 添加的用户明和设置的samba密码"
     echo "更多内容请自行GOOGLE"
-    
+
 }
 
 function menu() {
@@ -166,29 +172,35 @@ function menu() {
     read -p "Enter your choice:" option
 }
 
-while [ true ]
-do
+while [ true ]; do
     logo
     line
     check_samba
     line
     menu
     case $option in
-        0)
-        break ;;
-        1)
-        anyone ;;
-        2)
-        mima ;;
-        3)
-        test ;;
-        4)
-        helper ;;
-        5)
-        adduser ;;
-        *)
-            clear
-        echo -e "$blue Sorry wrong selection" ;;
+    0)
+        break
+        ;;
+    1)
+        anyone
+        ;;
+    2)
+        mima
+        ;;
+    3)
+        test
+        ;;
+    4)
+        helper
+        ;;
+    5)
+        adduser
+        ;;
+    *)
+        clear
+        echo -e "$blue Sorry wrong selection"
+        ;;
     esac
     read -p "Hit any key to continue" option
 done

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Update let's encrypt
-:<<BLOCK
+: <<BLOCK
 Let's Encrypt有个官方的CertBot脚本，添加个crontab任务在每周四的三点执行下面的脚本0 4 * * 3 /opt/scripts/su_certbot.sh：
 BLOCK
 
@@ -14,6 +14,6 @@ $result=$(python -c "import urllib, sys; print urllib.quote(sys.argv[1])" "$resu
 curl -s -X POST https://api.telegram.org/$api_key/sendMessage -d chat_id=$chat_id -d \
 	text="Let's Encrypt Certbot(s2.shuyz.com): \
 	%0A \
-	${result}"  > /dev/null
+	${result}" >/dev/null
 
 exit 0
