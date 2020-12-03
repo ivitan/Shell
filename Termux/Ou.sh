@@ -1,7 +1,7 @@
 #!/bin/sh
 # Copyright by Vitan @ 2020.6
 
-if ! [ -x "$(command -v curl)" ];then
+if ! [ -x "$(command -v curl)" ]; then
 	pkg install curl -y
 fi
 
