@@ -128,6 +128,7 @@ function TermuxItem() {
         wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Linux/Termux/zshrc -O ~/.zshrc
 		echo 'POWERLEVEL9K_DISABLE_GITSTATUS=true' >> ~/.zshrc
 		exec zsh
+		wget https://raw.githubusercontent.com/ivi     tan/DotFiles/master/Linux/Termux/p10k.zsh -O ~/.p10k.zsh
         source ~/.zshrc
         echo -e "$blue 配置完成"
         line
