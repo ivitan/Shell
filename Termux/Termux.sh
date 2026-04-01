@@ -253,7 +253,11 @@ function PyItem() {
 
     2)
         echo "正在安装 Jupyter Notebook"
-        apt install ndk-sysroot fftw libsodium libzmq freetype libpng glib pkg-config -y
+		pkg update && pkg upgrade -y
+		pkg install python clang build-essential rust binutils libzmq libcrypt openssl ca-certificates -y
+		pkg install python-psutil -y
+		export CARGO_HTTP_MULTIPLEXING=false
+		export ANDROID_API_LEVEL=24
         pip install --upgrade pip
         pip install jupyter
         echo -e "$blue 安装完成"
@@ -261,6 +265,7 @@ function PyItem() {
         PythonTools
         PyItem
         ;;
+		se Nerdtree
 
     3)
         echo "正在安装 BeautifulSoup4 requests"
