@@ -126,6 +126,8 @@ function TermuxItem() {
         chsh -s $(which zsh)
         rm -rf ~/.zshrc
         wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Linux/Termux/zshrc -O ~/.zshrc
+		echo 'POWERLEVEL9K_DISABLE_GITSTATUS=true' >> ~/.zshrc
+		exec zsh
         source ~/.zshrc
         echo -e "$blue 配置完成"
         line
