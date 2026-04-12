@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/data/data/com.termux/files/usr/bin/bash
 #Copyright by Vitan @ 2019
 
 blue="\033[36m"
