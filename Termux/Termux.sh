@@ -120,7 +120,7 @@ function TermuxItem() {
         ;;
 
     4)
-        apt update && apt upgrate
+        apt update && apt upgrade
         apt install git zsh curl wget -y
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         chsh -s $(which zsh)
@@ -128,7 +128,7 @@ function TermuxItem() {
         wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Linux/Termux/zshrc -O ~/.zshrc
 		echo 'POWERLEVEL9K_DISABLE_GITSTATUS=true' >> ~/.zshrc
 		exec zsh
-		wget https://raw.githubusercontent.com/ivi     tan/DotFiles/master/Linux/Termux/p10k.zsh -O ~/.p10k.zsh
+		wget https://raw.githubusercontent.com/ivitan/DotFiles/master/Linux/Termux/p10k.zsh -O ~/.p10k.zsh
         source ~/.zshrc
         echo -e "$blue 配置完成"
         line
@@ -265,7 +265,6 @@ function PyItem() {
         PythonTools
         PyItem
         ;;
-		se Nerdtree
 
     3)
         echo "正在安装 BeautifulSoup4 requests"
@@ -322,7 +321,7 @@ function PyItem() {
 
     7)
         echo "正在安装 Matplotlib"
-        apt install freetype libpng pkg-config libpng -y
+        apt install freetype libpng pkg-config -y
         pip install matplotlib
         echo -e "$yellow 安装完成"
         line
@@ -362,6 +361,7 @@ function PyItem() {
 
     *)
         echo -e "\033[31m 序号无效,请重试 \033[0m"
+        PythonTools
         PyItem
         ;;
     esac
@@ -487,7 +487,7 @@ function items() {
         pkg install nodejs-lts -y
         git clone -b source https://github.com/iVitan/ivitan.github.io.git $HOME/Hexo
         git clone https://github.com/ivitan/indigo.git $HOME/Hexo/themes/indigo
-        cd ~/hexo
+        cd ~/Hexo
         npm install -g hexo-cli
         npm install
         wget https://github.com/ivitan/ivitan.github.io/releases/download/Pin/generator.js -O $HOME/Hexo/node_modules/hexo-generator-index/lib/generator.js
@@ -518,7 +518,7 @@ function items() {
         echo "将要从Github上下载AriaNg-1.1.4-AllInOne.zip，此版本更新于2019.10.8，截至2020.2.20为最新版。"
         wget https://github.com/mayswind/AriaNg/releases/download/1.1.4/AriaNg-1.1.4-AllInOne.zip ~/
         if [ -f ~/AriaNg-1.1.4-AllInOne.zip ]; then
-            unzip AriaNg-1.1.4-AllInOne.zip
+            unzip ~/AriaNg-1.1.4-AllInOne.zip
             mv -f ~/index.html $PREFIX/share/nginx/html/index.html
             mv -f ~/LICENSE $PREFIX/share/nginx/html/LICENSE
             echo -e "nginx\naria2c --conf-path=$HOME/aria2/aria2.conf -D" >$PREFIX/bin/startaria2
@@ -841,7 +841,7 @@ function SeItem() {
         ;;
 
     7)
-        git clone https://www.github.com/threat9/routersploit ~/routersploit
+        git clone https://github.com/threat9/routersploit ~/routersploit
         cd routersploit
         pip install -r requirements.txt
         python rsf.py
@@ -889,6 +889,7 @@ function SeItem() {
         security
         SeItem
         ;;
+
     12)
         git clone https://github.com/m4ll0k/WPSeku.git ~/wpseku
         cd ~/wpseku
@@ -969,6 +970,7 @@ function EggItem() {
         eggs
         EggItem
         ;;
+
     5)
         pkg install -y nyancat
         nyancat
@@ -986,7 +988,7 @@ function EggItem() {
         ;;
 
     7)
-        apt-get moo
+        apt moo
         line
         eggs
         EggItem
