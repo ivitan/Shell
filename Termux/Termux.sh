@@ -503,7 +503,7 @@ function items() {
         git config --global user.name "${UserName}"
         read -p "请输入 SSH 邮箱 # " UserEmail
         git config --global user.email "${UserEmail}"
-        ssh-keygen -t rsa -C "${UserEmail}"
+        ssh-keygen -t ed25519 -C "${UserEmail}"
         echo -e "$yellow 配置完成"
         line
         Tools
