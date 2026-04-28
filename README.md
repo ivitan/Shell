@@ -6,11 +6,11 @@
 
 ## Termux Config
 ### via curl
-```bash
+```BASH
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/ivitan/Shell/master/Termux/Termux.sh)"
 ```
 
 ### via wget
-```bash
+```BASH
 bash -c "$(wget -O- https://raw.githubusercontent.com/ivitan/Shell/master/Termux/Termux.sh)"
 ```
