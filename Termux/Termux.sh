@@ -759,6 +759,7 @@ function DevItem() {
         read -p "请输入 SSH 邮箱 # " UserEmail
         git config --global user.email "${UserEmail}"
         ssh-keygen -t rsa -C "${UserEmail}"
+		git config --global credential.helper store
         echo -e "$yellow 配置完成"
         line
         development
